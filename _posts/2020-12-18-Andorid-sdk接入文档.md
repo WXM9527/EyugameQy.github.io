@@ -7,11 +7,11 @@ tags: [Android]
 pin: true
 ---
 
-## 示例工程 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍下面的文档
+# 示例工程 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍下面的文档
 
 ## 1. 迁移到 AndroidX
 如果您的项目已经是支持Androidx，请忽略。
-### 使用 Android Studio 迁移现有项目
+### 1.1 使用 Android Studio 迁移现有项目
 使用 Android Studio 3.2 及更高版本，您只需从菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
 重构命令使用两个标记。默认情况下，这两个标记在 gradle.properties 文件中都设为 true：
