@@ -3,7 +3,7 @@ title: Android接入文档（国外）
 author: wuxiaowei
 date: 2020-12-19 15:00:00 +0800
 categories: [Blogging, Tutorial]
-tags: [Android]
+tags: [Android,海外]
 pin: true
 ---
 
@@ -133,37 +133,37 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 dependencies {
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.14'
+    implementation 'com.eyu.opensdk:core:1.7.15'
     //引入所有国外平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.14'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.15'
    
     //按需求引入广告平台
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.5.0.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.5.0.16'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.5.0.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.5.0.16'
     
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.15'
     
     //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.15'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.15'
     
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.15'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.15'
     
     //unity
-    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.15'
     
     //vungle
-    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.15'
 }
 ```
 

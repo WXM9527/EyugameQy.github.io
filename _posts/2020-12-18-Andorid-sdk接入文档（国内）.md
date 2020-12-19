@@ -3,7 +3,7 @@ title: Android接入文档(国内)
 author: wuxiaowei
 date: 2020-12-19 15:00:00 +0800
 categories: [Blogging, Tutorial]
-tags: [Android]
+tags: [Android,国内]
 pin: true
 ---
 
@@ -131,17 +131,17 @@ dependencies {
     compile(name: 'open_ad_sdk', ext: 'aar')
 
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.14'
+    implementation 'com.eyu.opensdk:core-ch:1.7.15'
     //引入所有平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.14'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.15'
    
     //按需求引入广告平台
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.15'
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.15'
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.14
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.15'
 }
 ```
 
