@@ -1,5 +1,5 @@
 ---
-title: Android接入文档
+title: Android接入文档(国内)
 author: wuxiaowei
 date: 2020-12-19 15:00:00 +0800
 categories: [Blogging, Tutorial]
@@ -91,36 +91,24 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 ```groovy
 buildscript {
-    repositories {
-       maven {
-           url  "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea"
-       }
-        maven { url "https://fyber.bintray.com/marketplace" }
-        maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
-    }
-    dependencies {
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
-        
-    }
-}
 
-allprojects {
     repositories {
-         
-        maven {
-            url 'https://repo.rdc.aliyun.com/repository/74503-release-qNEqtU/'
-            credentials {
-                username 'p5gXfa'
-                password 'wKY0RHNSH3'
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+    }
+
+    allprojects {
+        repositories {
+            
+            maven {
+                url 'https://repo.rdc.aliyun.com/repository/74503-release-qNEqtU/'
+                credentials {
+                    username 'p5gXfa'
+                    password 'wKY0RHNSH3'
+                }
             }
+            maven { url 'https://dl.bintray.com/umsdk/release' }
+        
         }
-        maven { url "https://jitpack.io" }
-         maven {
-             url  "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea"
-         }
-        maven { url "https://fyber.bintray.com/marketplace" }
-        maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
     }
 }
 ```
@@ -128,70 +116,69 @@ allprojects {
 ### app module的build.gradle 添加以下内容
 
 ```groovy
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
+    //穿山甲sdk
+    compile(name: 'open_ad_sdk', ext: 'aar')
+
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.14'
-    //引入所有国外平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.14'
+    implementation 'com.eyu.opensdk:core-ch:1.7.14'
+    //引入所有平台，不建议
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.14'
    
     //按需求引入广告平台
-    //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.5.0.14'
-
-    //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.5.0.15'
-    
-    //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.14'
-    
-    //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.14'
-    
-    //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.14'
-    
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.14'
-    
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.14'
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.14'
-    
-    //unity
-    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.14'
-    
-    //vungle
-    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.14'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.14'
+    //广点通
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.14
 }
 ```
 
-### 清单文件修改
+### 穿山甲的库需要单独引入
+将穿山甲的库拷贝到工程目录的libs下，头条库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)
+
+### 清单文件修改、
 
 ```xml
-<manifest>
-    <application>
-        <!--google ads-->
-       <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/google_ads_app_id" />
-        <!-- facebook ads-->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <!-- applovin max ads-->
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="@string/applovin_sdk_key" />
-        <!-- 穿山甲-->
-        <provider
-            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
-            android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
-    </application>
-</manifest>
+<!--穿山甲-->
+<provider
+    android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+    android:authorities="${applicationId}.TTFileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/eyu_tt_file_path" />
+</provider>
+<!--mtg-->
+<provider
+    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
+    android:authorities="${applicationId}.mtgFileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/eyu_mtg_file_path"/>
+</provider>
+<!--广点通-->
+<provider
+    android:name="com.qq.e.comm.GDTFileProvider"
+    android:authorities="${applicationId}.gdt.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+     android:name="android.support.FILE_PROVIDER_PATHS"
+     android:resource="@xml/eyu_gdt_file_path" />
+</provider>
 ```
+
 
 ## SDK使用
 
@@ -205,14 +192,12 @@ InitializerBuilderImpl builder = new InitializerBuilderImpl();
 
 //appsflyer配置
 //builder.initAppsFlyer(“appkey”);
-
+//热云
+//builder.initTracking(this,"appKey","channle");
+//友盟
+//builder.initUmeng("appKey","channle");
 //数数的统计初始化
 //builder.initThinkData("appid","serverurl");
-
-//远程配置
-//Map<String, Object> defaultsMap = new HashMap<>();
-//defaultsMap.put("key","defaultValue");
-//builder.initRemoteConfig(sDefaultsMap);
 
 SdkCompat.getInstance().init(Application, builder);
 
@@ -254,6 +239,22 @@ SdkCompat.getInstance().init(Application, builder);
     ]
     ```
 
+
+#### 权限申请
+```java
+ String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION};
+SdkCompat.getInstance().requestPermissions(this, permissions, 1000);
+```
+
+#### 权限回调
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    SdkCompat.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+}
+```
 
 #### 广告初始化
 
@@ -362,7 +363,7 @@ EyuAdManager.getInstance().show(AdFormat.NATIVE, Activity,ViewGroup,"adPlaceId")
 
 ### 基本数据埋点
 
-调用下面的方法，事件会上传到Firebase和Appsflyer
+调用下面的方法，事件会上传到umeng和Appsflyer
 ```java
 //事件不带参数
 EventHelper.getInstance().logEvent("事件名称");
@@ -412,70 +413,17 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 广告测试
-
-**强烈建议使用VPN挂到美国测试**，没有广告请检查日志打印，过滤onAdLoadFailed,一般失都是广告没有填充
-
-### 谷歌
-
-+ 使用示例广告单元  
-
-    |  广告格式   | 示例广告单元 ID  |
-    |  ----  | ----  |
-    | 横幅广告  | ca-app-pub-3940256099942544/6300978111 |
-    | 插页式广告  | ca-app-pub-3940256099942544/1033173712 |
-    | 插页式视频广告  | ca-app-pub-3940256099942544/8691691433 |
-    | 激励视频广告  | ca-app-pub-3940256099942544/5224354917 |
-    | 原生高级广告  | ca-app-pub-3940256099942544/2247696110 |
-    | 原生高级视频广告  | ca-app-pub-3940256099942544/1044960115 |  
-
-<br>
-
-+ 使用测试设备  
-    >系统会自动将 Android 模拟器配置为测试设备。
-+ 检查 logcat 输出，过滤addTestDevice查找设备id，将设备id加入的初始化的代码当中 
-    ```
-    I/Ads: Use AdRequest.Builder.addTestDevice("68F0142924806103623C22CBA2697DB1") to get test ads on this device.
-    ```
- 
-
-
-### Facebook
-
-检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
-
-
 ## 常见问题
 
 + sdk下载失败？  
-  检查3.2中的gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否联通
+  检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
 
 + 没有广告展示？  
-  1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印
+  1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印，将错误码提供给支持
   2.确保科学上网  
   3.按照6中广告测试方法
   4.Facebook广告必须安装Facebook且登录账号
 
-+ 错误码的含义？  
-  Admob错误码  
-  |  错误码   | 含义  |  
-    |  ----  | ----  |
-    | 0  | 内部错误. |
-    | 1  | 请求参数错误，例如广告key错误 |
-    | 2  | 网络异常，请求失败. |
-    | 3  | 没有广告填充. |
-    | 9  | 聚合广告没有广告填充. |
-
-    Facebook错误码  
-    |  错误码   | 含义  |
-    |  ----  | ----  |
-    | 1000  | Network Error. |
-    | 1001  | 没有广告填充，必须安装Facebook且登录 |
-    | 1002  | 广告加载太频繁. |
-    | 1012  | 广告sdk版本太低. |
-    | 2000，2001  | 内部错误. |
-
-    。。。。待完善
 
 ## 示例工程 
-[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
+[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new)，建议先仔细看一遍上面的文档
