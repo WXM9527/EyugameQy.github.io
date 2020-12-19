@@ -27,17 +27,17 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 还有疑问可以看google的[**迁移到 AndroidX**](https://developer.android.com/jetpack/androidx/migrate)文档
 
 
-## 2. MultiDex 配置
+## MultiDex 配置
 
-### 2.1 minSdkVersion >=21
+### minSdkVersion >=21
 
 系统默认情况下会启用 MultiDex，并且您不需要 MultiDex 支持库。
 
-### 2.2 minSdkVersion <=20
+### minSdkVersion <=20
 
 您必须使用 MultiDex 支持库并对应用项目进行以下修改：
 
-### 2.2.1 修改模块级 build.gradle 文件以启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+### 修改模块级 build.gradle 文件以启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
     ```gradle
     android {
@@ -53,7 +53,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
     }
     ```
 
-### 2.2.2 继承 Application 类，执行以下某项操作：
+### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
   ```java
@@ -81,13 +81,13 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 [更多MultiDex相关文档](https://developer.android.com/studio/build/multidex)    
 
 
-## 3. 项目配置修改
+## 项目配置修改
 
-### 3.1 配置google-services.json
+### 配置google-services.json
 
 从firebase控制台下载 google-services.json ，并复制到module根目录下
 
-### 3.2 项目根目录的build.gradle增加以下内容
+### 项目根目录的build.gradle增加以下内容
 
 ```groovy
 buildscript {
@@ -125,7 +125,7 @@ allprojects {
 }
 ```
 
-### 3.3. app module的build.gradle 添加以下内容
+### app module的build.gradle 添加以下内容
 
 ```groovy
 apply plugin: 'com.google.gms.google-services'
@@ -167,7 +167,7 @@ dependencies {
 }
 ```
 
-### 3.4 清单文件修改
+### 清单文件修改
 
 ```xml
 <manifest>
@@ -193,9 +193,9 @@ dependencies {
 </manifest>
 ```
 
-## 4. SDK使用
+## SDK使用
 
-### 4.1 sdk初始化
+### sdk初始化
 
 请在 Application 中初始化sdk，添加配置信息，按需添加
 
@@ -218,9 +218,9 @@ SdkCompat.getInstance().init(Application, builder);
 
 ```
 
-### 4.2 广告配置与初始化
+### 广告配置与初始化
 
-#### 4.2.1 广告配置
+#### 广告配置
 
 广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json
 + ad_setting.json，广告位配置，展示广告传入的 <font color = #1a73e8 size=3>adPlaceId</font> 就是id的值，格式如下：
@@ -255,7 +255,7 @@ SdkCompat.getInstance().init(Application, builder);
     ```
 
 
-#### 4.2.2 广告初始化
+#### 广告初始化
 
 ```java
 AdConfig adConfig = new AdConfig();
@@ -320,36 +320,36 @@ EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListene
    
 ```
 
-### 4.3 广告使用示例
+### 广告使用示例
 
 调用show方法时传入的<font color = #1a73e8 size=3>adPlaceId</font>为4.2.1中的<font color = #1a73e8 size=3>ad_setting.json</font>中的id
 
-#### 4.3.1 判断广告是否有可用的广告
+#### 判断广告是否有可用的广告
 
 ```java
 EyuAdManager.getInstance().isAdLoaded(AdFormat,"adPlaceId")
 ```
 
-#### 4.3.2 展示激励视频
+#### 展示激励视频
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.REWARDED, Activity,"adPlaceId");
 ```
 
-#### 4.3.3 展示插屏
+#### 展示插屏
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.INTERSTITIAL, Activity,"adPlaceId");
 ```
 
-#### 4.3.4 展示banner
+#### 展示banner
 
 需要传入一个ViewGroup，这个group是用来放banner的
 ```java
 EyuAdManager.getInstance().show(AdFormat.BANNER, Activity,ViewGroup,"adPlaceId");
 ```
 
-#### 4.3.4 展示原生广告
+#### 展示原生广告
 
 需要传入一个ViewGroup，这个group是用来放native的
 ```java
@@ -358,9 +358,9 @@ EyuAdManager.getInstance().show(AdFormat.NATIVE, Activity,ViewGroup,"adPlaceId")
 ```
 
 
-## 5. 事件埋点
+## 事件埋点
 
-### 5.1 基本数据埋点
+### 基本数据埋点
 
 调用下面的方法，事件会上传到Firebase和Appsflyer
 ```java
@@ -372,7 +372,7 @@ EventHelper.getInstance().logEventWithParamsMap("事件名称",new HashMap<Strin
 EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 ```
 
-### 5.2 数数的埋点
+### 数数的埋点
 
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
 
@@ -412,11 +412,11 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 6. 广告测试
+## 广告测试
 
 **强烈建议使用VPN挂到美国测试**，没有广告请检查日志打印，过滤onAdLoadFailed,一般失都是广告没有填充
 
-### 6.1 谷歌
+### 谷歌
 
 + 使用示例广告单元  
 
@@ -440,12 +440,12 @@ void trackUpdate(String var1, JSONObject var2, String var3);
  
 
 
-### 6.2 Facebook
+### Facebook
 
 检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
 
 
-## 7. 常见问题
+## 常见问题
 
 + sdk下载失败？  
   检查3.2中的gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否联通
@@ -477,5 +477,5 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
     。。。。待完善
 
-## 8. 示例工程 
+## 示例工程 
 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
