@@ -11,7 +11,7 @@ pin: true
 
 ## 1. 迁移到 AndroidX
 如果您的项目已经是支持Androidx，请忽略。
-### 1.1 使用 Android Studio 迁移现有项目
+### 使用 Android Studio 迁移现有项目
 使用 Android Studio 3.2 及更高版本，您只需从菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
 重构命令使用两个标记。默认情况下，这两个标记在 gradle.properties 文件中都设为 true：
