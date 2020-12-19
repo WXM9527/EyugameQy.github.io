@@ -37,7 +37,9 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 您必须使用 MultiDex 支持库并对应用项目进行以下修改：
 
-### 修改模块级 build.gradle 文件以启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+### 修改模块级 build.gradle 文件
+
+启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
     ```gradle
     android {
@@ -113,7 +115,9 @@ buildscript {
 }
 ```
 
-### app module的build.gradle 添加以下内容
+### 修改app module的build.gradle 
+
+添加以下内容
 
 ```groovy
 
@@ -142,6 +146,7 @@ dependencies {
 ```
 
 ### 穿山甲的库需要单独引入
+
 将穿山甲的库拷贝到工程目录的libs下，头条库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)
 
 ### 清单文件修改、
@@ -248,6 +253,7 @@ SdkCompat.getInstance().requestPermissions(this, permissions, 1000);
 ```
 
 #### 权限回调
+
 ```java
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -426,4 +432,5 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
 
 ## 示例工程 
+
 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new)，建议先仔细看一遍上面的文档
