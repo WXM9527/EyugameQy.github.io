@@ -7,8 +7,6 @@ tags: [Android]
 pin: true
 ---
 
-# 示例工程 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍下面的文档
-
 ## 1. 迁移到 AndroidX
 如果您的项目已经是支持Androidx，请忽略。
 ### 1.1 使用 Android Studio 迁移现有项目
@@ -419,7 +417,7 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
 + 错误码的含义？  
   Admob错误码  
-  |  错误码   | 含义  |
+  |  错误码   | 含义  |  
     |  ----  | ----  |
     | 0  | 内部错误. |
     | 1  | 请求参数错误，例如广告key错误 |
@@ -437,3 +435,5 @@ void trackUpdate(String var1, JSONObject var2, String var3);
     | 2000，2001  | 内部错误. |
 
     。。。。待完善
+
+## 8. 示例工程 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍下面的文档
