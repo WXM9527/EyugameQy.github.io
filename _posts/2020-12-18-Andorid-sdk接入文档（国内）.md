@@ -133,7 +133,7 @@ dependencies {
     //sdk核心库（必须）
     implementation 'com.eyu.opensdk:core-ch:1.7.15'
     //引入所有平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.15'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.16'
    
     //按需求引入广告平台
     //mtg
