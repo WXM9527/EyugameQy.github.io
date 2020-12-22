@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2020-12-19 15:00:00 +0800
+date: 2020-12-22 15:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -124,6 +124,13 @@ allprojects {
     }
 }
 ```
+### 从旧版升级的注意
+
+删除旧版的引入，refresh gradle
+```groovy
+implementation 'com.eyu:eyulibrary:xxx'
+```
+新版的包名改了，将代码中的报错import删除，重新引入。删除SdkHelper相关代码
 
 ### app module的build.gradle 添加以下内容
 
@@ -132,20 +139,23 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 dependencies {
+    //删除旧版的引入
+    //implementation 'com.eyu:eyulibrary:xxx'
+
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.15'
+    implementation 'com.eyu.opensdk:core:1.7.17'
     //引入所有国外平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.15'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.17'
    
     //按需求引入广告平台
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.5.0.16'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.16'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.5.0.16'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.16'
     
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.16'
     
     //facebook
     //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.15'
