@@ -131,17 +131,17 @@ dependencies {
     compile(name: 'open_ad_sdk', ext: 'aar')
 
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.17'
+    implementation 'com.eyu.opensdk:core-ch:1.7.18'
     //引入所有平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.17'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.18'
    
     //按需求引入广告平台
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.18'
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.18'
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.18'
 }
 ```
 

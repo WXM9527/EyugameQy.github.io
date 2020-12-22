@@ -143,37 +143,37 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
 
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.17'
+    implementation 'com.eyu.opensdk:core:1.7.18'
     //引入所有国外平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.17'
+    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.18'
    
     //按需求引入广告平台
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.16'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.18'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.16'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.18'
     
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.16'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.18'
     
     //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.18'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.18'
     
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.18'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.18'
     
     //unity
-    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.18'
     
     //vungle
-    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.15'
+    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.18'
 }
 ```
 
