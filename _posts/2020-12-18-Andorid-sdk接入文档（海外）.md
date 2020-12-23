@@ -143,7 +143,7 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
 
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.18'
+    implementation 'com.eyu.opensdk:core:1.7.19'
     //引入所有国外平台，不建议
     implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.18'
    
