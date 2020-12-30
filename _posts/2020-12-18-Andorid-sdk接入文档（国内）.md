@@ -127,13 +127,11 @@ repositories {
     }
 }
 dependencies {
-    //穿山甲sdk
-    compile(name: 'open_ad_sdk', ext: 'aar')
-
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.18'
+    implementation 'com.eyu.opensdk:core-ch:1.7.19'
+
     //引入所有平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.18'
    
     //按需求引入广告平台
     //mtg
@@ -147,9 +145,38 @@ dependencies {
 
 ### 穿山甲的库需要单独引入
 
-将穿山甲的库拷贝到工程目录的libs下，头条库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)
+将穿山甲的库拷贝到工程目录的libs下，头条库open_ad_sdk.aar在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)，在gradle中加入
 
-### 清单文件修改、
+```groovy
+dependencies {
+    implementation(name: 'open_ad_sdk', ext: "aar")
+}
+
+```
+
+### topon的库需要单独引入
+
+将topon的库拷贝到工程目录的libs下，库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs/)，topon_libs和topon_res整个**文件夹**复制到工程目录的libs，然后在gradle中的android下加入以下内容
+
+```groovy
+android{
+    sourceSets {
+        main {
+            res.srcDirs += 'topon_res'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar','*.aar'], dir: 'topon_libs')
+}
+
+```
+
+
+### 清单文件修改
+
+引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入
 
 ```xml
 <!--穿山甲-->
@@ -246,6 +273,7 @@ SdkCompat.getInstance().init(Application, builder);
 
 
 #### 权限申请
+
 ```java
  String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION};
@@ -274,11 +302,6 @@ adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
-
-//测试设备配置，获取方式，参考后面的"测试"
-//adConfig.setAdmobTestDeviceIds(Arrays.asList("68F0142924806103623C22CBA2697DB1"));
-
-//adConfig.setFacebookTestDeviceId("bd1dbca5-8ae6-43e5-949b-44fe9b5fdc4c");
 
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {
@@ -369,7 +392,7 @@ EyuAdManager.getInstance().show(AdFormat.NATIVE, Activity,ViewGroup,"adPlaceId")
 
 ### 基本数据埋点
 
-调用下面的方法，事件会上传到umeng和Appsflyer
+调用下面的方法，事件会上传到umeng和Appsflyer，**不会上传到数数** 如果要上传到数数，请额外调用数数的方法
 ```java
 //事件不带参数
 EventHelper.getInstance().logEvent("事件名称");
@@ -383,7 +406,13 @@ EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
 
+
 ```java
+
+EventHelper.getInstance().track("事件名称");
+
+EventHelper.getInstance().track("事件名称",JSONObject);
+//....
 void track(String var1);
 
 void track(String var1, JSONObject var2);
