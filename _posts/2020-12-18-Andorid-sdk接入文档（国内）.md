@@ -189,6 +189,10 @@ dependencies {
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/eyu_tt_file_path" />
 </provider>
+<provider
+    android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"   
+    android:authorities="${applicationId}.TTMultiProvider"   
+    android:exported="false"  data-tomark-pass />
 <!--mtg-->
 <provider
     android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
