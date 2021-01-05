@@ -264,7 +264,7 @@ InitializerBuilderImpl builder = new InitializerBuilderImpl();
 //友盟
 //builder.initUmeng("appKey","channle");
 //数数的统计初始化
-//builder.initThinkData("appid","serverurl");
+//builder.initThinkData("appid",BuildConfig.DEBUG);
 
 SdkCompat.getInstance().init(Application, builder);
 
