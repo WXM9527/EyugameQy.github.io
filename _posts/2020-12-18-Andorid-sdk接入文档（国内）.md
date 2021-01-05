@@ -173,17 +173,17 @@ dependencies {
 
 ```
 
-
 ### 清单文件修改
 
 #### Android 9以上适配
 
 + 在AndroidManifest中新增以下配置
+  
 ```xml
 <application>
-    ...
+    
     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-    ...
+    
 </application>
 ```
 
@@ -191,11 +191,10 @@ dependencies {
 
 ```xml
 <application
-    ...
     android:networkSecurityConfig="@xml/network_security_config"
-    ...
+    
     >
-    ...
+    
 </application>
 ```
 其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
