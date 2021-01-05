@@ -194,7 +194,7 @@ dependencies {
         <meta-data
             android:name="applovin.sdk.key"
             android:value="@string/applovin_sdk_key" />
-        <!-- 穿山甲-->
+        <!-- 穿山甲，如果你是在库工程引入，需要吧${applicationId}替换成你的包名-->
         <provider
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
             android:authorities="${applicationId}.TTMultiProvider"
@@ -233,7 +233,7 @@ SdkCompat.getInstance().init(Application, builder);
 #### 广告配置
 
 广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json
-+ ad_setting.json，广告位配置，展示广告传入的 <font color = #1a73e8 size=3>adPlaceId</font> 就是id的值，格式如下：
++ ad_setting.json，广告位配置，展示广告传入的 <font color = #1a73e8 size=3>adPlaceId</font> 就是id的值，示例：
     ```json
     [
         {
@@ -245,7 +245,7 @@ SdkCompat.getInstance().init(Application, builder);
         }
     ]
     ```
-+ ad_cache_setting.json，广告的缓存池配置
++ ad_cache_setting.json，广告的缓存池配置，示例：
     ```json
     {
         "keys": "[\"fb_ys_a\",\"adys_sy\"]",//广告平台key
@@ -254,7 +254,7 @@ SdkCompat.getInstance().init(Application, builder);
         "type": "nativeAd"//广告类型
     }
     ```
-+ ad_key_setting.json，广告平台的key
++ ad_key_setting.json，广告平台的key，示例：
     ```json
     [
         {"id":"adcp_js","key":"ca-app-pub-3940256099942544/1033173712","network":"admob"},
