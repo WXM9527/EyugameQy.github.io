@@ -128,18 +128,17 @@ repositories {
 }
 dependencies {
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.19'
+    implementation 'com.eyu.opensdk:core-ch:1.7.21'
 
-    //引入所有平台，不建议
-    //implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.18'
-   
     //按需求引入广告平台
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.21'
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.21'
+     //topon
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.21'
 }
 ```
 
@@ -336,6 +335,29 @@ adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
+
+//穿山甲
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PangleExtras.APP_NAME, "");
+adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
+
+//mtg
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
+
+//TOPON
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+adConfig.addPlatformConfig(AdPlatform.TOPON, bundle);
+
+//广点通
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+adConfig.addPlatformConfig(AdPlatform.GDT, bundle);
 
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {
