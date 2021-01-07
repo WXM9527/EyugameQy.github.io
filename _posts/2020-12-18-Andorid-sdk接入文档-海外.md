@@ -37,9 +37,11 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 您必须使用 MultiDex 支持库并对应用项目进行以下修改：
 
-### 修改模块级 build.gradle 文件以启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+### 修改模块级 build.gradle 文件
 
-    ```gradle
+启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+
+    ```groovy
     android {
         defaultConfig {
             ...
@@ -56,6 +58,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
++ 
   ```java
     public class MyApplication extends Application {
         @Override
@@ -65,7 +68,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
         }
     }
   ```
-+ 请修改manifest文件以设置 <application> 标记中的 android:name，替换成你的Application全类名
++ 请修改manifest文件以设置 **application** 标记中的 android:name，替换成你的Application全类名
   
   ```xml
     <?xml version="1.0" encoding="utf-8"?>

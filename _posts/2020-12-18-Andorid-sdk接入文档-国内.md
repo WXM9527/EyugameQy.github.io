@@ -68,7 +68,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
         }
     }
   ```
-+ 请修改manifest文件以设置 <application> 标记中的 android:name，替换成你的Application全类名
++ 请修改manifest文件以设置 **application** 标记中的 android:name，替换成你的Application全类名
   
   ```xml
     <?xml version="1.0" encoding="utf-8"?>
