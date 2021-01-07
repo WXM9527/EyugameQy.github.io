@@ -138,6 +138,13 @@ implementation 'com.eyu:eyulibrary:xxx'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+// 如果引入tradplus，加入下面这个
+// android{
+//     packagingOptions{
+//         exclude 'AndroidManifest.xml'
+//     }
+// }
+
 dependencies {
     //删除旧版的引入
     //implementation 'com.eyu:eyulibrary:xxx'
@@ -178,6 +185,9 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.21'
 }
 ```
+
+### 如果引入tradplus
+
 
 ### 清单文件修改
 

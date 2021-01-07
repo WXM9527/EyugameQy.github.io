@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国内）
 author: wuxiaowei
-date: 2021-01-07 11:00:00 +0800
+date: 2021-01-07 15:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
@@ -41,7 +41,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
-    ```gradle
+    ```groovy
     android {
         defaultConfig {
             ...
@@ -58,6 +58,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
+  
   ```java
     public class MyApplication extends Application {
         @Override
