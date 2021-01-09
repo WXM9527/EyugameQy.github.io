@@ -1,7 +1,7 @@
 ---
-title: Android接入文档(国内)
+title: Android接入文档（国内）
 author: wuxiaowei
-date: 2020-12-22 15:00:00 +0800
+date: 2021-01-07 15:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
@@ -41,7 +41,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
-    ```gradle
+    ```groovy
     android {
         defaultConfig {
             ...
@@ -58,6 +58,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
+  
   ```java
     public class MyApplication extends Application {
         @Override
@@ -67,7 +68,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
         }
     }
   ```
-+ 请修改manifest文件以设置 <application> 标记中的 android:name，替换成你的Application全类名
++ 请修改manifest文件以设置 **application** 标记中的 android:name，替换成你的Application全类名
   
   ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -128,18 +129,17 @@ repositories {
 }
 dependencies {
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.19'
+    implementation 'com.eyu.opensdk:core-ch:1.7.21'
 
-    //引入所有平台，不建议
-    //implementation 'com.eyu.opensdk.ad.mediation:adapter-all-ch:1.7.18'
-   
     //按需求引入广告平台
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.21'
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.21'
+     //topon
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.21'
 }
 ```
 
@@ -336,6 +336,29 @@ adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
+
+//穿山甲
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PangleExtras.APP_NAME, "");
+adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
+
+//mtg
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
+
+//TOPON
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+adConfig.addPlatformConfig(AdPlatform.TOPON, bundle);
+
+//广点通
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+adConfig.addPlatformConfig(AdPlatform.GDT, bundle);
 
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {

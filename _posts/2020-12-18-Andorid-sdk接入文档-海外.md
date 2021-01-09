@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2020-12-22 15:00:00 +0800
+date: 2021-01-07 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -37,9 +37,11 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 您必须使用 MultiDex 支持库并对应用项目进行以下修改：
 
-### 修改模块级 build.gradle 文件以启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+### 修改模块级 build.gradle 文件
 
-    ```gradle
+启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
+
+    ```groovy
     android {
         defaultConfig {
             ...
@@ -56,6 +58,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
++ 
   ```java
     public class MyApplication extends Application {
         @Override
@@ -65,7 +68,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
         }
     }
   ```
-+ 请修改manifest文件以设置 <application> 标记中的 android:name，替换成你的Application全类名
++ 请修改manifest文件以设置 **application** 标记中的 android:name，替换成你的Application全类名
   
   ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -138,44 +141,56 @@ implementation 'com.eyu:eyulibrary:xxx'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+// 如果引入tradplus，加入下面这个
+// android{
+//     packagingOptions{
+//         exclude 'AndroidManifest.xml'
+//     }
+// }
+
 dependencies {
     //删除旧版的引入
     //implementation 'com.eyu:eyulibrary:xxx'
 
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.19'
-    //引入所有国外平台，不建议
-    implementation 'com.eyu.opensdk.ad.mediation:adapter-all:1.7.18'
-   
+    implementation 'com.eyu.opensdk:core:1.7.21'
+    
+    
     //按需求引入广告平台
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.21'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.21'
     
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.10.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.11.21'
     
     //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.21'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.10.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.11.21'
     
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.21'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.1.7.5.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.21'
     
     //unity
-    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.21'
     
     //vungle
-    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.18'
+    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.21'
+
+    //tradplus
+    //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.21'
 }
 ```
+
+### 如果引入tradplus
+
 
 ### 清单文件修改
 
@@ -278,11 +293,47 @@ adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
 
-//测试设备配置，获取方式，参考后面的"测试"
-//adConfig.setAdmobTestDeviceIds(Arrays.asList("68F0142924806103623C22CBA2697DB1"));
+ //admob
+Bundle bundle = new Bundle();
+//appid 在Manifest中配置
+bundle.putStringArrayList(PlatformExtras.COMMON_TEST_DEVICE, new ArrayList<String>(Arrays.asList("")));
+adConfig.addPlatformConfig(AdPlatform.ADMOB, bundle);
 
-//adConfig.setFacebookTestDeviceId("bd1dbca5-8ae6-43e5-949b-44fe9b5fdc4c");
+//facebook
+bundle = new Bundle();
+//appid 在Manifest中配置
+bundle.putString(PlatformExtras.COMMON_TEST_DEVICE, "");
+adConfig.addPlatformConfig(AdPlatform.FACEBOOK, bundle);
 
+//max
+//appid 在Manifest中配置
+
+//穿山甲
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PangleExtras.APP_NAME, "");
+adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
+
+//unity
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+adConfig.addPlatformConfig(AdPlatform.UNITY, bundle);
+
+//vungle
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+adConfig.addPlatformConfig(AdPlatform.VUNGLE, bundle);
+
+//mtg
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
+
+//TRADPLUS
+bundle = new Bundle();
+bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+adConfig.addPlatformConfig(AdPlatform.TRADPLUS, bundle);
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {
 
@@ -332,7 +383,7 @@ EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListene
 
 ### 广告使用示例
 
-调用show方法时传入的<font color = #1a73e8 size=3>adPlaceId</font>为4.2.1中的<font color = #1a73e8 size=3>ad_setting.json</font>中的id
+调用show方法时传入的**adPlaceId** 为**ad_setting.json**中的id
 
 #### 判断广告是否有可用的广告
 
