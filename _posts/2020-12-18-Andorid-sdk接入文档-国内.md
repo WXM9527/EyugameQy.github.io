@@ -129,7 +129,7 @@ repositories {
 }
 dependencies {
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.21'
+    implementation 'com.eyu.opensdk:core-ch:1.7.22'
 
     //按需求引入广告平台
     //mtg
