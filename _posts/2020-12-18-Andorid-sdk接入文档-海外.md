@@ -41,7 +41,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
-    ```groovy
+```groovy
     android {
         defaultConfig {
             ...
@@ -53,7 +53,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
     dependencies {
         implementation 'androidx.multidex:multidex:2.0.1'
     }
-    ```
+
+```
 
 ### 继承 Application 类，执行以下某项操作：
 
@@ -189,33 +190,46 @@ dependencies {
 }
 ```
 
-### 如果引入tradplus
+#### Android 9以上适配
 
++ 在AndroidManifest中新增以下配置
+  
+```xml
+<application>
+    
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    
+</application>
+```
 
-### 清单文件修改
++ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
 
 ```xml
-<manifest>
-    <application>
-        <!--google ads-->
-       <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/google_ads_app_id" />
-        <!-- facebook ads-->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <!-- applovin max ads-->
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="@string/applovin_sdk_key" />
-        <!-- 穿山甲，如果你是在库工程引入，需要吧${applicationId}替换成你的包名-->
-        <provider
-            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
-            android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
-    </application>
-</manifest>
+<application
+    android:networkSecurityConfig="@xml/network_security_config"
+    
+    >
+    
+</application>
+```
+其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+```
+
++ 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
+
+```xml
+<!--头条-穿山甲-->
+<provider
+    android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"   
+    android:authorities="${applicationId}.TTMultiProvider"   
+    android:exported="false" />
+
 ```
 
 ## SDK使用

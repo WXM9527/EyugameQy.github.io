@@ -41,7 +41,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
-    ```groovy
+```groovy
     android {
         defaultConfig {
             ...
@@ -53,7 +53,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
     dependencies {
         implementation 'androidx.multidex:multidex:2.0.1'
     }
-    ```
+
+```
 
 ### 继承 Application 类，执行以下某项操作：
 
@@ -128,6 +129,9 @@ repositories {
     }
 }
 dependencies {
+    //删除旧版的引入
+    //implementation 'com.eyu:eyulibrary:xxx'
+    
     //sdk核心库（必须）
     implementation 'com.eyu.opensdk:core-ch:1.7.22'
 
