@@ -190,6 +190,8 @@ dependencies {
 }
 ```
 
+### 清单文件修改
+
 #### Android 9以上适配
 
 + 在AndroidManifest中新增以下配置
@@ -221,15 +223,32 @@ dependencies {
 </network-security-config>
 ```
 
+#### 其他广告平台相关配置
+
 + 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
 
 ```xml
-<!--头条-穿山甲-->
-<provider
-    android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"   
-    android:authorities="${applicationId}.TTMultiProvider"   
-    android:exported="false" />
-
+<manifest>
+    <application>
+        <!--google ads-->
+       <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/google_ads_app_id" />
+        <!-- facebook ads-->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <!-- applovin max ads-->
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="@string/applovin_sdk_key" />
+        <!-- 穿山甲，如果你是在库工程引入，需要吧${applicationId}替换成你的包名-->
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+            android:authorities="${applicationId}.TTMultiProvider"
+            android:exported="false" />
+    </application>
+</manifest>
 ```
 
 ## SDK使用
