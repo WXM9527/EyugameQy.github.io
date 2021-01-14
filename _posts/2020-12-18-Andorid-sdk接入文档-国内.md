@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国内）
 author: wuxiaowei
-date: 2021-01-14 15:00:00 +0800
+date: 2021-01-14 12:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
@@ -189,6 +189,7 @@ dependencies {
     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     
 </application>
+
 ```
 
 + 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
@@ -200,7 +201,9 @@ dependencies {
     >
     
 </application>
+
 ```
+
 其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
 
 ```xml
@@ -208,6 +211,7 @@ dependencies {
 <network-security-config>
     <base-config cleartextTrafficPermitted="true" />
 </network-security-config>
+
 ```
 
 + 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
@@ -247,8 +251,8 @@ dependencies {
      android:name="android.support.FILE_PROVIDER_PATHS"
      android:resource="@xml/eyu_gdt_file_path" />
 </provider>
-```
 
+```
 
 ## SDK使用
 
