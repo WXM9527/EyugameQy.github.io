@@ -15,12 +15,13 @@ pin: true
 
 使用 Android Studio 3.2 及更高版本，您只需从菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
-重构命令使用两个标记。默认情况下，这两个标记在 gradle.properties 文件中都设为 true：
++ 修改 gradle.properties，加入以下代码块
 
-> android.useAndroidX=true
-       
-Android 插件会使用对应的 AndroidX 库而非支持库。
-> android.enableJetifier=true 
+```
+android.useAndroidX=true
+android.enableJetifier=true 
+
+```
 
 Android 插件会通过重写现有第三方库的二进制文件，自动将这些库迁移为使用 AndroidX，**特别需要注意原生广告**。
 
