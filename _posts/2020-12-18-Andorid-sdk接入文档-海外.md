@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2021-01-07 11:00:00 +0800
+date: 2021-01-14 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -9,18 +9,15 @@ pin: true
 
 ## 迁移到 AndroidX
 
-如果您的项目已经是支持Androidx，请忽略。
+如果创建的项目时支持AndroidX不用修改。如果是旧项目，请使用 Android Studio 3.2 及更高版本，菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
-### 使用 Android Studio 迁移现有项目
++ 修改 gradle.properties，加入以下代码块
 
-使用 Android Studio 3.2 及更高版本，您只需从菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
+```
+android.useAndroidX=true
+android.enableJetifier=true 
 
-重构命令使用两个标记。默认情况下，这两个标记在 gradle.properties 文件中都设为 true：
-
-> android.useAndroidX=true
-       
-Android 插件会使用对应的 AndroidX 库而非支持库。
-> android.enableJetifier=true 
+```
 
 Android 插件会通过重写现有第三方库的二进制文件，自动将这些库迁移为使用 AndroidX，**特别需要注意原生广告**。
 
@@ -41,7 +38,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
-    ```groovy
+```groovy
     android {
         defaultConfig {
             ...
@@ -53,7 +50,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
     dependencies {
         implementation 'androidx.multidex:multidex:2.0.1'
     }
-    ```
+
+```
 
 ### 继承 Application 类，执行以下某项操作：
 
@@ -189,10 +187,42 @@ dependencies {
 }
 ```
 
-### 如果引入tradplus
-
-
 ### 清单文件修改
+
+#### Android 9以上适配
+
++ 在AndroidManifest中新增以下配置
+  
+```xml
+<application>
+    
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    
+</application>
+```
+
++ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
+
+```xml
+<application
+    android:networkSecurityConfig="@xml/network_security_config"
+    
+    >
+    
+</application>
+```
+其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+```
+
+#### 其他广告平台相关配置
+
++ 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
 
 ```xml
 <manifest>
