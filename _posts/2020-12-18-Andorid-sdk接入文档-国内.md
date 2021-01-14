@@ -204,9 +204,10 @@ dependencies {
 
 ```
 
-其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
++ 在项目的res/xml文件夹新增network_security_config.xml，内容如下：
 
 ```xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <base-config cleartextTrafficPermitted="true" />
@@ -214,7 +215,9 @@ dependencies {
 
 ```
 
-+ 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
++ 广告配置相关
+
+引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
 
 ```xml
 <!--头条-穿山甲-->
