@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国内）
 author: wuxiaowei
-date: 2021-01-14 12:00:00 +0800
+date: 2021-01-19 12:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
@@ -83,10 +83,6 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 
 ## 项目配置修改
-
-### 配置google-services.json
-
-从firebase控制台下载 google-services.json ，并复制到module根目录下
 
 ### 项目根目录的build.gradle增加以下内容
 

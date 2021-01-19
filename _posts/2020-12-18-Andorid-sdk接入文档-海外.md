@@ -125,14 +125,6 @@ allprojects {
     }
 }
 ```
-### 从旧版升级的注意
-
-删除旧版的引入，refresh gradle
-```groovy
-implementation 'com.eyu:eyulibrary:xxx'
-```
-新版的包名改了，将代码中的报错import删除，重新引入。删除SdkHelper相关代码
-
 ### app module的build.gradle 添加以下内容
 
 ```groovy
@@ -250,6 +242,9 @@ dependencies {
 
 ## SDK使用
 
+###  从旧版升级的注意
+
+新版的包名改了，将代码中的报错import删除，重新引入，删除SdkHelper相关代码
 ### sdk初始化
 
 请在 Application 中初始化sdk，添加配置信息，按需添加
