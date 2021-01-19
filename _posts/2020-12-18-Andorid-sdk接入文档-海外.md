@@ -1,13 +1,14 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2021-01-14 11:00:00 +0800
+date: 2021-01-19 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
 ---
+# Android系统适配与打包相关配置
 
-## 迁移到 AndroidX
+## AndroidX配置
 
 如果创建的项目时支持AndroidX不用修改。如果是旧项目，请使用 Android Studio 3.2 及更高版本，菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
@@ -82,13 +83,42 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 [更多MultiDex相关文档](https://developer.android.com/studio/build/multidex)    
 
 
-## 项目配置修改
+## Android 9以上适配
 
-### 配置google-services.json
++ 在AndroidManifest中新增以下配置
+  
+```xml
+<application>
+    
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    
+</application>
+```
 
-从firebase控制台下载 google-services.json ，并复制到module根目录下
++ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
 
-### 项目根目录的build.gradle增加以下内容
+```xml
+<application
+    android:networkSecurityConfig="@xml/network_security_config"
+    
+    >
+    
+</application>
+```
+其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+```
+
+
+
+# SDK基础配置
+
+## 项目根目录的build.gradle增加以下内容
 
 ```groovy
 buildscript {
@@ -125,12 +155,37 @@ allprojects {
     }
 }
 ```
-### app module的build.gradle 添加以下内容
+
+
+## Firebase配置
+
+从firebase控制台下载 google-services.json ，并复制到 Phone Module目录下
+
+
+## Phone Module的build.gradle 添加以下内容
 
 ```groovy
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+```
+
+# 广告配置
+
+## 引入广告依赖
+
++ 一般你只会用到max
+
+```groovy
+
+implementation 'com.eyu.opensdk:core:1.7.22'
+implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
+
+```
+
++ 其他广告平台
+
+```groovy
 // 如果引入tradplus，加入下面这个
 // android{
 //     packagingOptions{
@@ -139,22 +194,15 @@ apply plugin: 'com.google.firebase.crashlytics'
 // }
 
 dependencies {
-    //删除旧版的引入
-    //implementation 'com.eyu:eyulibrary:xxx'
 
-    //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core:1.7.22'
-    
-    
-    //按需求引入广告平台
+    //max
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
+
     //admob    
     //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.21'
 
     //admob聚合
     //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.21'
-    
-    //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.21'
     
     //facebook
     //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.22'
@@ -166,7 +214,7 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.21'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.22'
     
     //unity
     //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.21'
@@ -177,89 +225,77 @@ dependencies {
     //tradplus
     //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.21'
 }
+
 ```
 
-### 清单文件修改
+## Admob
 
-#### Android 9以上适配
-
-+ 在AndroidManifest中新增以下配置
-  
-```xml
-<application>
-    
-    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-    
-</application>
-```
-
-+ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
-
-```xml
-<application
-    android:networkSecurityConfig="@xml/network_security_config"
-    
-    >
-    
-</application>
-```
-其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
-</network-security-config>
-```
-
-#### 其他广告平台相关配置
-
-+ 引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
+<font color="#dd0000">必须配置此项</font>
 
 ```xml
 <manifest>
     <application>
-        <!--google ads-->
-       <meta-data
+        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/google_ads_app_id" />
-        <!-- facebook ads-->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <!-- applovin max ads-->
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="@string/applovin_sdk_key" />
-        <!-- 穿山甲，如果你是在库工程引入，需要吧${applicationId}替换成你的包名-->
-        <provider
-            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
-            android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
+            <!--google_ads_app_id为广告应用id-->
     </application>
 </manifest>
+
 ```
 
-## SDK使用
+## Facebook
 
-###  从旧版升级的注意
+<font color="#dd0000">必须配置此项</font>
+
+
+```xml
+<manifest>
+    <application>
+         <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+    </application>
+</manifest>
+
+```
+
+## Max
+
+必须配置此项，另外需添加前面Admob和Facebook的配置下
+
+```xml
+<manifest>
+    <application>
+         <meta-data
+            android:name="applovin.sdk.key"
+            android:value="@string/applovin_sdk_key" />
+    </application>
+</manifest>
+
+```
+
+# 旧版本升级注意
 
 新版的包名改了，将代码中的报错import删除，重新引入，删除SdkHelper相关代码
-### sdk初始化
 
-请在 Application 中初始化sdk，添加配置信息，按需添加
+# SDK使用
+
+## SDK初始化
+
+请在 Application 中的onCreate方法中初始化sdk，添加配置信息
 
 ```java
 //
 InitializerBuilderImpl builder = new InitializerBuilderImpl();
 
 //appsflyer配置
-//builder.initAppsFlyer(“appkey”);
+builder.initAppsFlyer(填你的key));
 
 //数数的统计初始化
-//builder.initThinkData("appid","serverurl");
+builder.initThinkData(填你的 appid,BuildConfig.DEBUG);
 
-//远程配置
+//远程配置，没用到可不添加
 //Map<String, Object> defaultsMap = new HashMap<>();
 //defaultsMap.put("key","defaultValue");
 //builder.initRemoteConfig(sDefaultsMap);
@@ -268,103 +304,79 @@ SdkCompat.getInstance().init(Application, builder);
 
 ```
 
-### 广告配置与初始化
+## 广告配置
 
-#### 广告配置
+广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json，实际给到的名字前面可能会有and_前缀，将它们放到**res/raw**目录下，将后面会用到。
 
-广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json
-+ ad_setting.json，广告位配置，展示广告传入的 <font color = #1a73e8 size=3>adPlaceId</font> 就是id的值，示例：
-    ```json
-    [
-        {
-        "cacheGroup": "main_view_inter_ad",
-        "isEnabled": "true",
-        "nativeAdLayout": "",
-        "id": "main_view_inter_ad",
-        "desc": "首页插屏"
-        }
-    ]
-    ```
-+ ad_cache_setting.json，广告的缓存池配置，示例：
-    ```json
-    {
-        "keys": "[\"fb_ys_a\",\"adys_sy\"]",//广告平台key
-        "isAutoLoad": "true",
-        "id": "page_view_native_ad",
-        "type": "nativeAd"//广告类型
-    }
-    ```
-+ ad_key_setting.json，广告平台的key，示例：
-    ```json
-    [
-        {"id":"adcp_js","key":"ca-app-pub-3940256099942544/1033173712","network":"admob"},
-        {"id":"adjl_jsg","key":"ca-app-pub-3940256099942544/5224354917","network":"admob"},
-        {"id":"adys_sy","key":"ca-app-pub-3940256099942544/2247696110","network":"admob"},
-        {"id":"adys_ba","key":"ca-app-pub-3940256099942544/6300978111","network":"admob"}
-    ]
-    ```
+## 广告初始化
 
-
-#### 广告初始化
+在你的Activity中初始化广告
 
 ```java
+
 AdConfig adConfig = new AdConfig();
+
+//前面提到的ad_setting.json
 adConfig.setAdPlaceConfigResource(this, R.raw.ad_setting);
 //adConfig.setAdPlaceConfigStr
 
+//前面提到的ad_key_setting.json
 adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 //adConfig.setAdKeyConfigStr()
 
+//前面提到的ad_cache_setting.json
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
 
- //admob
+
 Bundle bundle = new Bundle();
+
+ //admob
 //appid 在Manifest中配置
-bundle.putStringArrayList(PlatformExtras.COMMON_TEST_DEVICE, new ArrayList<String>(Arrays.asList("")));
-adConfig.addPlatformConfig(AdPlatform.ADMOB, bundle);
+//bundle.putStringArrayList(PlatformExtras.COMMON_TEST_DEVICE, new ArrayList<String>(Arrays.asList("")));
+//adConfig.addPlatformConfig(AdPlatform.ADMOB, bundle);
 
 //facebook
-bundle = new Bundle();
+//bundle = new Bundle();
 //appid 在Manifest中配置
-bundle.putString(PlatformExtras.COMMON_TEST_DEVICE, "");
-adConfig.addPlatformConfig(AdPlatform.FACEBOOK, bundle);
+//bundle.putString(PlatformExtras.COMMON_TEST_DEVICE, "");
+//adConfig.addPlatformConfig(AdPlatform.FACEBOOK, bundle);
 
 //max
 //appid 在Manifest中配置
 
 //穿山甲
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-bundle.putString(PangleExtras.APP_NAME, "");
-adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//bundle.putString(PangleExtras.APP_NAME, "");
+//adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
 
 //unity
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-adConfig.addPlatformConfig(AdPlatform.UNITY, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//adConfig.addPlatformConfig(AdPlatform.UNITY, bundle);
 
 //vungle
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-adConfig.addPlatformConfig(AdPlatform.VUNGLE, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//adConfig.addPlatformConfig(AdPlatform.VUNGLE, bundle);
 
 //mtg
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
-adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+//adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
 
 //TRADPLUS
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-adConfig.addPlatformConfig(AdPlatform.TRADPLUS, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//adConfig.addPlatformConfig(AdPlatform.TRADPLUS, bundle);
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {
 
     @Override
     public void onAdReward(AdFormat type, String placeId) {
-        //激励视频获得奖励
+        //激励视频获得奖励，type.getLable()获得广告类型，placeId为广告位置
     }
 
     @Override
@@ -406,36 +418,36 @@ EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListene
    
 ```
 
-### 广告使用示例
+## 广告使用示例
 
-调用show方法时传入的**adPlaceId** 为**ad_setting.json**中的id
+调用EyuAdManager.getInstance().show(AdFormat,"adPlaceId")方法展示广告，传入的**adPlaceId** 为前面提到的**ad_setting.json**中的id
 
-#### 判断广告是否有可用的广告
+### 判断广告是否有可用的广告
 
 ```java
 EyuAdManager.getInstance().isAdLoaded(AdFormat,"adPlaceId")
 ```
 
-#### 展示激励视频
+### 展示激励视频
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.REWARDED, Activity,"adPlaceId");
 ```
 
-#### 展示插屏
+### 展示插屏
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.INTERSTITIAL, Activity,"adPlaceId");
 ```
 
-#### 展示banner
+### 展示banner
 
 需要传入一个ViewGroup，这个group是用来放banner的
 ```java
 EyuAdManager.getInstance().show(AdFormat.BANNER, Activity,ViewGroup,"adPlaceId");
 ```
 
-#### 展示原生广告
+### 展示原生广告
 
 需要传入一个ViewGroup，这个group是用来放native的
 ```java
@@ -443,12 +455,11 @@ EyuAdManager.getInstance().show(AdFormat.NATIVE, Activity,ViewGroup,"adPlaceId")
 
 ```
 
+# 事件埋点
 
-## 事件埋点
+## 基本数据埋点
 
-### 基本数据埋点
-
-调用下面的方法，事件会上传到Firebase和Appsflyer
+调用下面的方法，事件会上传到Firebase和Appsflyer，**不会上传到数数** 如果要上传到数数，请额外调用数数的方法
 ```java
 //事件不带参数
 EventHelper.getInstance().logEvent("事件名称");
@@ -458,11 +469,21 @@ EventHelper.getInstance().logEventWithParamsMap("事件名称",new HashMap<Strin
 EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 ```
 
-### 数数的埋点
+## 数数的埋点
+
+**你可能会用到这个，看给你的配置中有没有数数的配置**
 
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
 
+> EventHelper.getInstance().track("");
+
 ```java
+
+EventHelper.getInstance().track("事件名称");
+
+EventHelper.getInstance().track("事件名称",JSONObject);//参数
+
+//更多方法
 void track(String var1);
 
 void track(String var1, JSONObject var2);
@@ -498,11 +519,27 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 广告测试
+## 常见问题
+
++ sdk下载失败？  
+  检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
+
++ 没有广告展示？  
+  1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印，将错误码提供给支持
+  2.国外包确保科学上网  
+  3.按照6中广告测试方法
+  4.Facebook广告必须安装Facebook且登录账号
+
+## 示例工程 
+[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
+
+# 广告测试
+
+## max
 
 **强烈建议使用VPN挂到美国测试**，没有广告请检查日志打印，过滤onAdLoadFailed,一般失都是广告没有填充
 
-### 谷歌
+## 谷歌
 
 + 使用示例广告单元  
 
@@ -526,7 +563,7 @@ void trackUpdate(String var1, JSONObject var2, String var3);
  
 
 
-### Facebook
+## Facebook
 
 检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
 
@@ -563,5 +600,3 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
     。。。。待完善
 
-## 示例工程 
-[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档

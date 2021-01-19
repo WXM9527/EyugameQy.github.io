@@ -1,13 +1,15 @@
 ---
 title: Android接入文档（国内）
 author: wuxiaowei
-date: 2021-01-19 12:00:00 +0800
+date: 2021-01-19 17:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
 ---
 
-## 迁移到 AndroidX
+# Android系统适配与打包相关配置
+
+## AndroidX配置
 
 如果创建的项目时支持AndroidX不用修改。如果是旧项目，请使用 Android Studio 3.2 及更高版本，菜单栏中依次选择 Refactor > Migrate to AndroidX，即可将现有项目迁移到 AndroidX。
 
@@ -82,9 +84,42 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 [更多MultiDex相关文档](https://developer.android.com/studio/build/multidex)    
 
 
-## 项目配置修改
+## Android 9以上适配
 
-### 项目根目录的build.gradle增加以下内容
++ 在AndroidManifest中新增以下配置
+  
+```xml
+<application>
+    
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    
+</application>
+```
+
++ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
+
+```xml
+<application
+    android:networkSecurityConfig="@xml/network_security_config"
+    
+    >
+    
+</application>
+```
+其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+```
+
+
+
+# SDK基础配置
+
+## 项目根目录的build.gradle增加以下内容
 
 ```groovy
 buildscript {
@@ -110,9 +145,11 @@ buildscript {
 }
 ```
 
-### 修改app module的build.gradle 
+# 广告配置
 
-添加以下内容
+## 引入广告依赖
+
+app module的build.gradle 添加以下内容
 
 ```groovy
 
@@ -129,18 +166,22 @@ dependencies {
     implementation 'com.eyu.opensdk:core-ch:1.7.22'
 
     //按需求引入广告平台
-    //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
+
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.22'
+
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.22'
+
      //topon
     //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.21'
+
+        //mtg
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
 }
 ```
 
-### 穿山甲的库需要单独引入
+## 穿山甲
 
 将穿山甲的库拷贝到工程目录的libs下，头条库open_ad_sdk.aar在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)，在gradle中加入
 
@@ -151,7 +192,11 @@ dependencies {
 
 ```
 
-### topon的库需要单独引入
+## 广点通
+
+无
+
+## topon
 
 将topon的库拷贝到工程目录的libs下，库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs/)，topon_libs和topon_res整个**文件夹**复制到工程目录的libs，然后在gradle中的android下加入以下内容
 
@@ -170,91 +215,19 @@ dependencies {
 
 ```
 
-### 清单文件修改
+## mtg
+无
 
-#### Android 9以上适配
+# 旧版本升级注意
 
-+ 在AndroidManifest中新增以下配置
-  
-```xml
-<application>
-    
-    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-    
-</application>
+新版的包名改了，将代码中的报错import删除，重新引入，删除SdkHelper相关代码
 
-```
 
-+ 兼容部分第三方广告SDK存在Http请求 在AndroidManifest的application的标签中增加：android:networkSecurityConfig 的配置：
+# SDK使用
 
-```xml
-<application
-    android:networkSecurityConfig="@xml/network_security_config"
-    
-    >
-    
-</application>
+## SDK初始化
 
-```
-
-+ 在项目的res/xml文件夹新增network_security_config.xml，内容如下：
-
-```xml
-
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
-</network-security-config>
-
-```
-
-+ 广告配置相关
-
-引入了哪个平台就加入哪个，不然会编译不通过，如果引入聚合，聚合中包含了以下平台，也需要加入。如果你是在库工程引入，需要吧${applicationId}替换成你的包名
-
-```xml
-<!--头条-穿山甲-->
-<provider
-    android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
-    android:authorities="${applicationId}.TTFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/eyu_tt_file_path" />
-</provider>
-<provider
-    android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"   
-    android:authorities="${applicationId}.TTMultiProvider"   
-    android:exported="false" />
-<!--mtg-->
-<provider
-    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
-    android:authorities="${applicationId}.mtgFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/eyu_mtg_file_path"/>
-</provider>
-<!--广点通-->
-<provider
-    android:name="com.qq.e.comm.GDTFileProvider"
-    android:authorities="${applicationId}.gdt.fileprovider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-     android:name="android.support.FILE_PROVIDER_PATHS"
-     android:resource="@xml/eyu_gdt_file_path" />
-</provider>
-
-```
-
-## SDK使用
-
-### sdk初始化
-
-请在 Application 中初始化sdk，添加配置信息，按需添加
+请在 Application 中的onCreate方法中初始化sdk，添加配置信息
 
 ```java
 //
@@ -262,10 +235,13 @@ InitializerBuilderImpl builder = new InitializerBuilderImpl();
 
 //appsflyer配置
 //builder.initAppsFlyer(“appkey”);
+
 //热云
 //builder.initTracking(this,"appKey","channle");
+
 //友盟
 //builder.initUmeng("appKey","channle");
+
 //数数的统计初始化
 //builder.initThinkData("appid",BuildConfig.DEBUG);
 
@@ -273,44 +249,9 @@ SdkCompat.getInstance().init(Application, builder);
 
 ```
 
-### 广告配置与初始化
+## 权限申请
 
-#### 广告配置
-
-广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json
-+ ad_setting.json，广告位配置，展示广告传入的 <font color = #1a73e8 size=3>adPlaceId</font> 就是id的值，格式如下：
-    ```json
-    [
-        {
-        "cacheGroup": "main_view_inter_ad",
-        "isEnabled": "true",
-        "nativeAdLayout": "",
-        "id": "main_view_inter_ad",
-        "desc": "首页插屏"
-        }
-    ]
-    ```
-+ ad_cache_setting.json，广告的缓存池配置
-    ```json
-    {
-        "keys": "[\"fb_ys_a\",\"adys_sy\"]",//广告平台key
-        "isAutoLoad": "true",
-        "id": "page_view_native_ad",
-        "type": "nativeAd"//广告类型
-    }
-    ```
-+ ad_key_setting.json，广告平台的key
-    ```json
-    [
-        {"id":"adcp_js","key":"ca-app-pub-3940256099942544/1033173712","network":"admob"},
-        {"id":"adjl_jsg","key":"ca-app-pub-3940256099942544/5224354917","network":"admob"},
-        {"id":"adys_sy","key":"ca-app-pub-3940256099942544/2247696110","network":"admob"},
-        {"id":"adys_ba","key":"ca-app-pub-3940256099942544/6300978111","network":"admob"}
-    ]
-    ```
-
-
-#### 权限申请
+在你的Activity中调用
 
 ```java
  String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -318,7 +259,9 @@ SdkCompat.getInstance().init(Application, builder);
 SdkCompat.getInstance().requestPermissions(this, permissions, 1000);
 ```
 
-#### 权限回调
+## 权限回调
+
+在你的Activity中调用
 
 ```java
 @Override
@@ -328,16 +271,27 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 }
 ```
 
-#### 广告初始化
+## 广告配置
+
+广告配置有三个文件，ad_setting.json，ad_cache_setting.json，ad_key_setting.json，实际给到的名字前面可能会有and_前缀，将它们放到**res/raw**目录下，将后面会用到。
+
+
+## 广告初始化
+
+在你的Activity中初始化广告
 
 ```java
 AdConfig adConfig = new AdConfig();
+
+//前面提到的ad_setting.json
 adConfig.setAdPlaceConfigResource(this, R.raw.ad_setting);
 //adConfig.setAdPlaceConfigStr
 
+//前面提到的ad_key_setting.json
 adConfig.setAdKeyConfigResource(this, R.raw.ad_key_setting);
 //adConfig.setAdKeyConfigStr()
 
+//前面提到的ad_cache_setting.json
 adConfig.setAdGroupConfigResource(this, R.raw.ad_cache_setting);
 //adConfig.setAdGroupConfigStr
 
@@ -348,28 +302,27 @@ bundle.putString(PangleExtras.APP_NAME, "");
 adConfig.addPlatformConfig(AdPlatform.PANGLE, bundle);
 
 //mtg
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
-adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+//adConfig.addPlatformConfig(AdPlatform.MTG, bundle);
 
 //TOPON
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
-adConfig.addPlatformConfig(AdPlatform.TOPON, bundle);
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//bundle.putString(PlatformExtras.COMMON_APP_KEY, "");
+//adConfig.addPlatformConfig(AdPlatform.TOPON, bundle);
 
 //广点通
-bundle = new Bundle();
-bundle.putString(PlatformExtras.COMMON_APP_ID, "");
-adConfig.addPlatformConfig(AdPlatform.GDT, bundle);
-
+//bundle = new Bundle();
+//bundle.putString(PlatformExtras.COMMON_APP_ID, "");
+//adConfig.addPlatformConfig(AdPlatform.GDT, bundle);
 
 EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListener() {
 
     @Override
     public void onAdReward(AdFormat type, String placeId) {
-        //激励视频获得奖励
+        //激励视频获得奖励，type.getLable()获得广告类型，placeId为广告位置
     }
 
     @Override
@@ -411,36 +364,36 @@ EyuAdManager.getInstance().config(MainActivity.this, adConfig, new EyuAdsListene
    
 ```
 
-### 广告使用示例
+## 广告使用示例
 
-调用show方法时传入的<font color = #1a73e8 size=3>adPlaceId</font>为4.2.1中的<font color = #1a73e8 size=3>ad_setting.json</font>中的id
+调用EyuAdManager.getInstance().show(AdFormat,"adPlaceId")方法展示广告，传入的**adPlaceId** 为前面提到的**ad_setting.json**中的id
 
-#### 判断广告是否有可用的广告
+### 判断广告是否有可用的广告
 
 ```java
 EyuAdManager.getInstance().isAdLoaded(AdFormat,"adPlaceId")
 ```
 
-#### 展示激励视频
+### 展示激励视频
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.REWARDED, Activity,"adPlaceId");
 ```
 
-#### 展示插屏
+### 展示插屏
 
 ```java
 EyuAdManager.getInstance().show(AdFormat.INTERSTITIAL, Activity,"adPlaceId");
 ```
 
-#### 展示banner
+### 展示banner
 
 需要传入一个ViewGroup，这个group是用来放banner的
 ```java
 EyuAdManager.getInstance().show(AdFormat.BANNER, Activity,ViewGroup,"adPlaceId");
 ```
 
-#### 展示原生广告
+### 展示原生广告
 
 需要传入一个ViewGroup，这个group是用来放native的
 ```java
@@ -449,9 +402,9 @@ EyuAdManager.getInstance().show(AdFormat.NATIVE, Activity,ViewGroup,"adPlaceId")
 ```
 
 
-## 事件埋点
+# 事件埋点
 
-### 基本数据埋点
+## 基本数据埋点
 
 调用下面的方法，事件会上传到umeng和Appsflyer，**不会上传到数数** 如果要上传到数数，请额外调用数数的方法
 ```java
@@ -465,15 +418,19 @@ EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 
 ### 数数的埋点
 
+**你可能会用到这个，看给你的配置中有没有数数的配置**
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
 
+
+> EventHelper.getInstance().track("");
 
 ```java
 
 EventHelper.getInstance().track("事件名称");
 
-EventHelper.getInstance().track("事件名称",JSONObject);
-//....
+EventHelper.getInstance().track("事件名称",JSONObject);//参数
+
+//更多方法
 void track(String var1);
 
 void track(String var1, JSONObject var2);
@@ -516,9 +473,6 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
 + 没有广告展示？  
   1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印，将错误码提供给支持
-  2.确保科学上网  
-  3.按照6中广告测试方法
-  4.Facebook广告必须安装Facebook且登录账号
 
 
 ## 示例工程 
