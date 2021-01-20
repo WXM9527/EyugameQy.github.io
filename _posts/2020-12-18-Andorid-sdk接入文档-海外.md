@@ -178,7 +178,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.22'
+implementation 'com.eyu.opensdk:core:1.7.23'
 implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.23'
 
 ```
@@ -214,7 +214,7 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.21'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.23'
     
     //unity
     //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.21'
