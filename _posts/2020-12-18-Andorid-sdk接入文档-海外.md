@@ -179,7 +179,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 ```groovy
 
 implementation 'com.eyu.opensdk:core:1.7.22'
-implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
+implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.23'
 
 ```
 
@@ -208,7 +208,7 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.22'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.12.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.12.23'
     
     //mtg
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.21'
