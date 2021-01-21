@@ -471,6 +471,6 @@ void trackUpdate(String var1, JSONObject var2, String var3);
   1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印，将错误码提供给支持
 
 
-## 示例工程 
+# 示例工程 
 
 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new)，建议先仔细看一遍上面的文档
