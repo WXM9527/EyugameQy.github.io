@@ -101,7 +101,6 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ```xml
 <application
     android:networkSecurityConfig="@xml/network_security_config"
-    
     >
     
 </application>
@@ -163,34 +162,30 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
     
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.23'
-
+    implementation 'com.eyu.opensdk:core-ch:1.7.24'
+    
+    //国内通常使用穿山甲
+    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.25'
+    
     //按需求引入广告平台
 
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.23'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.25'
 
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.24'
 
      //topon
-    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.24'
 
         //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.24'
 }
 ```
 
 ## 穿山甲
 
-将穿山甲的库拷贝到工程目录的libs下，头条库open_ad_sdk.aar在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)，在gradle中加入
-
-```groovy
-dependencies {
-    implementation(name: 'open_ad_sdk', ext: "aar")
-}
-
-```
+无
 
 ## 广点通
 
@@ -216,6 +211,7 @@ dependencies {
 ```
 
 ## mtg
+
 无
 
 # 旧版本升级注意
