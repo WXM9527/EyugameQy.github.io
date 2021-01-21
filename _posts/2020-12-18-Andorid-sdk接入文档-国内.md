@@ -412,7 +412,7 @@ EventHelper.getInstance().logEventWithParamsMap("事件名称",new HashMap<Strin
 EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 ```
 
-### 数数的埋点
+## 数数的埋点
 
 **你可能会用到这个，看给你的配置中有没有数数的配置**
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
