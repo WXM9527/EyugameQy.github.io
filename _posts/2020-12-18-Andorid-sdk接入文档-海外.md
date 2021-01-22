@@ -178,8 +178,8 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.22'
-implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
+implementation 'com.eyu.opensdk:core:1.7.24'
+implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.24'
 
 ```
 
@@ -196,34 +196,34 @@ implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
 dependencies {
 
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.24'
 
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.24'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.24'
     
     //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.24'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.12.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.12.24'
     
     //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.24'
     
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-adapter:3.4.0.0.24'
     
     //unity
-    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:unity-adapter:3.4.8.24'
     
     //vungle
-    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:vungle-adapter:6.8.1.24'
 
     //tradplus
-    //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.24'
 }
 
 ```
@@ -530,7 +530,8 @@ void trackUpdate(String var1, JSONObject var2, String var3);
   3.按照6中广告测试方法
   4.Facebook广告必须安装Facebook且登录账号
 
-## 示例工程 
+# 示例工程 
+
 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
 
 # 广告测试

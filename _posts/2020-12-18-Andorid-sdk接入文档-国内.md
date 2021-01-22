@@ -101,7 +101,6 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ```xml
 <application
     android:networkSecurityConfig="@xml/network_security_config"
-    
     >
     
 </application>
@@ -163,34 +162,30 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
     
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.22'
-
+    implementation 'com.eyu.opensdk:core-ch:1.7.24'
+    
+    //国内通常使用穿山甲
+    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.25'
+    
     //按需求引入广告平台
 
     //穿山甲
-    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.3.0.3.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.25'
 
     //广点通
-    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.22'
+    //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.24'
 
      //topon
-    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.24'
 
         //mtg
-    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.21'
+    //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.24'
 }
 ```
 
 ## 穿山甲
 
-将穿山甲的库拷贝到工程目录的libs下，头条库open_ad_sdk.aar在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs)，在gradle中加入
-
-```groovy
-dependencies {
-    implementation(name: 'open_ad_sdk', ext: "aar")
-}
-
-```
+无
 
 ## 广点通
 
@@ -216,6 +211,7 @@ dependencies {
 ```
 
 ## mtg
+
 无
 
 # 旧版本升级注意
@@ -416,7 +412,7 @@ EventHelper.getInstance().logEventWithParamsMap("事件名称",new HashMap<Strin
 EventHelper.getInstance().logEventWithJsonParams("事件名称","json");
 ```
 
-### 数数的埋点
+## 数数的埋点
 
 **你可能会用到这个，看给你的配置中有没有数数的配置**
 EventHelper对数数sdk的方法只是做了一层简单的封装，并没有做任何处理，所以先看下[数数的文档](https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/android_sdk_installation/android_sdk_installation.html#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6)，了解每个方法的含义
@@ -475,6 +471,6 @@ void trackUpdate(String var1, JSONObject var2, String var3);
   1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印，将错误码提供给支持
 
 
-## 示例工程 
+# 示例工程 
 
 [示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new)，建议先仔细看一遍上面的文档
