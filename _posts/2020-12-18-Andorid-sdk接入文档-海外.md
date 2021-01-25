@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2021-01-19 11:00:00 +0800
+date: 2021-01-25 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -179,7 +179,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 ```groovy
 
 implementation 'com.eyu.opensdk:core:1.7.24'
-implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.24'
+implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.1.24'
 
 ```
 
@@ -196,19 +196,19 @@ implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.24'
 dependencies {
 
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.14.12.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.1.24'
 
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.6.0.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.7.0.24'
 
     //admob聚合
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.6.0.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.7.0.24'
     
     //facebook
     //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.24'
     
     //applovin
-    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.14.12.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.15.1.24'
     
     //mtg
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-adapter:15.2.41.24'
@@ -262,7 +262,7 @@ dependencies {
 
 ## Max
 
-必须配置此项，另外需添加前面Admob和Facebook的配置下
+必须配置此项，max是聚合sdk，它包含了Admob和Facebook等其他广告sdk，需添加Admob和Facebook的配置下
 
 ```xml
 <manifest>
