@@ -176,7 +176,7 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.24'
 
      //topon
-    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.3.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.8.24'
 
         //mtg
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.24'
