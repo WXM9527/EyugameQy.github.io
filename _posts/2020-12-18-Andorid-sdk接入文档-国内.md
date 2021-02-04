@@ -462,7 +462,7 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 常见问题
+# 常见问题
 
 + sdk下载失败？  
   检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通

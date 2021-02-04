@@ -519,7 +519,7 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 常见问题
+# 常见问题
 
 + sdk下载失败？  
   检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
@@ -529,50 +529,6 @@ void trackUpdate(String var1, JSONObject var2, String var3);
   2.国外包确保科学上网  
   3.按照6中广告测试方法
   4.Facebook广告必须安装Facebook且登录账号
-
-# 示例工程 
-
-[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
-
-# 广告测试
-
-## max
-
-**强烈建议使用VPN挂到美国测试**，没有广告请检查日志打印，过滤onAdLoadFailed,一般失都是广告没有填充
-
-## 谷歌
-
-+ 使用示例广告单元  
-
-    |  广告格式   | 示例广告单元 ID  |
-    |  ----  | ----  |
-    | 横幅广告  | ca-app-pub-3940256099942544/6300978111 |
-    | 插页式广告  | ca-app-pub-3940256099942544/1033173712 |
-    | 插页式视频广告  | ca-app-pub-3940256099942544/8691691433 |
-    | 激励视频广告  | ca-app-pub-3940256099942544/5224354917 |
-    | 原生高级广告  | ca-app-pub-3940256099942544/2247696110 |
-    | 原生高级视频广告  | ca-app-pub-3940256099942544/1044960115 |  
-
-<br>
-
-+ 使用测试设备  
-    >系统会自动将 Android 模拟器配置为测试设备。
-+ 检查 logcat 输出，过滤addTestDevice查找设备id，将设备id加入的初始化的代码当中 
-    ```
-    I/Ads: Use AdRequest.Builder.addTestDevice("68F0142924806103623C22CBA2697DB1") to get test ads on this device.
-    ```
- 
-
-
-## Facebook
-
-检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
-
-
-## 常见问题
-
-+ sdk下载失败？  
-  检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
 
 + 出现构建错误:unexpected element ＜queries＞ found in ＜manifest＞
   修改根目录build.gradle文件中的Android Gradle 插件版本
@@ -622,4 +578,42 @@ buildscript {
     | 2000，2001  | 内部错误. |
 
     。。。。待完善
+
+# 示例工程 
+
+[示例工程](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_overseas_new)，建议先仔细看一遍上面的文档
+
+# 广告测试
+
+## max
+
+**强烈建议使用VPN挂到美国测试**，没有广告请检查日志打印，过滤onAdLoadFailed,一般失都是广告没有填充
+
+## 谷歌
+
++ 使用示例广告单元  
+
+    |  广告格式   | 示例广告单元 ID  |
+    |  ----  | ----  |
+    | 横幅广告  | ca-app-pub-3940256099942544/6300978111 |
+    | 插页式广告  | ca-app-pub-3940256099942544/1033173712 |
+    | 插页式视频广告  | ca-app-pub-3940256099942544/8691691433 |
+    | 激励视频广告  | ca-app-pub-3940256099942544/5224354917 |
+    | 原生高级广告  | ca-app-pub-3940256099942544/2247696110 |
+    | 原生高级视频广告  | ca-app-pub-3940256099942544/1044960115 |  
+
+<br>
+
++ 使用测试设备  
+    >系统会自动将 Android 模拟器配置为测试设备。
++ 检查 logcat 输出，过滤addTestDevice查找设备id，将设备id加入的初始化的代码当中 
+    ```
+    I/Ads: Use AdRequest.Builder.addTestDevice("68F0142924806103623C22CBA2697DB1") to get test ads on this device.
+    ```
+ 
+
+
+## Facebook
+
+检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
 
