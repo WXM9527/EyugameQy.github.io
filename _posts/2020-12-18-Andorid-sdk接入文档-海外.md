@@ -178,7 +178,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.24'
+implementation 'com.eyu.opensdk:core:1.7.25'
 implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.1.24'
 
 ```
@@ -573,6 +573,28 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 
 + sdk下载失败？  
   检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
+
++ 出现构建错误:unexpected element ＜queries＞ found in ＜manifest＞
+  修改根目录build.gradle文件中的Android Gradle 插件版本
+  当前使用->建议升级版本<br>
+  3.3.x->3.3.3<br>
+  3.4.x->3.4.3<br>
+  3.5.x->3.5.4<br>
+  3.6.x->3.6.4<br>
+  4.0.x->4.0.1<br>
+
+  举个例子，如果您正在使用 4.0.0 版本的 Android Gradle 插件，就可以在项目级别的 build.gradle 文件中将相关依赖升级到上图中对应的版本。
+
+```groovy
+buildscript {
+    dependencies {
+
+        //
+        // classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+```
 
 + 没有广告展示？  
   1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印
