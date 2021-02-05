@@ -152,6 +152,18 @@ app module的build.gradle 添加以下内容
 
 ```groovy
 
+defaultConfig {
+    ndk { abiFilters  'armeabi-v7a','x86','arm64-v8a','x86_64','armeabi' }
+}
+
+packagingOptions {
+    doNotStrip "*/armeabi-v7a/*.so"
+    doNotStrip "*/x86/*.so"
+    doNotStrip "*/arm64-v8a/*.so"
+    doNotStrip "*/x86_64/*.so"
+    doNotStrip "armeabi.so"
+}
+
 repositories {
     flatDir {
         dirs 'libs'
@@ -162,7 +174,7 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
     
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.28'
+    implementation 'com.eyu.opensdk:core-ch:1.7.29'
     
     //国内通常使用穿山甲
     implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.30'
