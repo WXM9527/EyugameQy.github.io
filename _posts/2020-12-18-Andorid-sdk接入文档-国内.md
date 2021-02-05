@@ -162,7 +162,7 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
     
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.27'
+    implementation 'com.eyu.opensdk:core-ch:1.7.28'
     
     //国内通常使用穿山甲
     implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.30'
@@ -228,18 +228,18 @@ dependencies {
 ```java
 //
 InitializerBuilderImpl builder = new InitializerBuilderImpl();
-
+builder.setDebugMode(BuildConfig.DEBUG);
 //appsflyer配置
-//builder.initAppsFlyer(“appkey”);
+//builder.configAppsFlyer(“appkey”);
 
 //热云
-//builder.initTracking(this,"appKey","channle");
+//builder.configTrackingIO("appKey");
 
 //友盟
-//builder.initUmeng("appKey","channle");
+//builder.initUmeng("appKey","channel");
 
 //数数的统计初始化
-//builder.initThinkData("appid",BuildConfig.DEBUG);
+//builder.configThinkData("appid");
 
 SdkCompat.getInstance().init(Application, builder);
 

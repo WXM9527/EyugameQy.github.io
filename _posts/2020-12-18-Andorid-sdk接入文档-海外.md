@@ -178,7 +178,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.25'
+implementation 'com.eyu.opensdk:core:1.7.26'
 implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.1.24'
 
 ```
@@ -288,12 +288,12 @@ dependencies {
 ```java
 //
 InitializerBuilderImpl builder = new InitializerBuilderImpl();
-
+builder.setDebugMode(BuildConfig.DEBUG);
 //appsflyer配置
-builder.initAppsFlyer(填你的key));
+builder.configAppsFlyer(填你的key));
 
 //数数的统计初始化
-builder.initThinkData(填你的 appid,BuildConfig.DEBUG);
+builder.configThinkData(填你的 appid);
 
 //远程配置，没用到可不添加
 //Map<String, Object> defaultsMap = new HashMap<>();
