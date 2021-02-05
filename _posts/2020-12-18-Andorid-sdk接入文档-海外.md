@@ -1,7 +1,7 @@
 ---
 title: Android接入文档（国外）
 author: wuxiaowei
-date: 2021-01-25 11:00:00 +0800
+date: 2021-01-31 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -178,7 +178,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.24'
+implementation 'com.eyu.opensdk:core:1.7.25'
 implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.1.24'
 
 ```
@@ -519,7 +519,7 @@ void trackFirst(String var1, JSONObject var2);
 void trackUpdate(String var1, JSONObject var2, String var3);
 ```
 
-## 常见问题
+# 常见问题
 
 + sdk下载失败？  
   检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
@@ -529,6 +529,55 @@ void trackUpdate(String var1, JSONObject var2, String var3);
   2.国外包确保科学上网  
   3.按照6中广告测试方法
   4.Facebook广告必须安装Facebook且登录账号
+
++ 出现构建错误:unexpected element ＜queries＞ found in ＜manifest＞
+  修改根目录build.gradle文件中的Android Gradle 插件版本
+  当前使用->建议升级版本<br>
+  3.3.x->3.3.3<br>
+  3.4.x->3.4.3<br>
+  3.5.x->3.5.4<br>
+  3.6.x->3.6.4<br>
+  4.0.x->4.0.1<br>
+
+  举个例子，如果您正在使用 4.0.0 版本的 Android Gradle 插件，就可以在项目级别的 build.gradle 文件中将相关依赖升级到上图中对应的版本。
+
+```groovy
+buildscript {
+    dependencies {
+
+        //
+        // classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+```
+
++ 没有广告展示？  
+  1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印
+  2.确保科学上网  
+  3.按照6中广告测试方法
+  4.Facebook广告必须安装Facebook且登录账号
+
++ 错误码的含义？  
+  Admob错误码  
+  |  错误码   | 含义  |  
+    |  ----  | ----  |
+    | 0  | 内部错误. |
+    | 1  | 请求参数错误，例如广告key错误 |
+    | 2  | 网络异常，请求失败. |
+    | 3  | 没有广告填充. |
+    | 9  | 聚合广告没有广告填充. |
+
+    Facebook错误码  
+    |  错误码   | 含义  |
+    |  ----  | ----  |
+    | 1000  | Network Error. |
+    | 1001  | 没有广告填充，必须安装Facebook且登录 |
+    | 1002  | 广告加载太频繁. |
+    | 1012  | 广告sdk版本太低. |
+    | 2000，2001  | 内部错误. |
+
+    。。。。待完善
 
 # 示例工程 
 
@@ -567,37 +616,4 @@ void trackUpdate(String var1, JSONObject var2, String var3);
 ## Facebook
 
 检测logcat输出，过滤"Test mode device hash"，将其添加到初始化配置
-
-
-## 常见问题
-
-+ sdk下载失败？  
-  检查build.gradle配置是否添加，如果添加好后还是不能加载成功，请检查网络是否连通
-
-+ 没有广告展示？  
-  1.请检查广告配置是否正确配置，如果配置好了，在Android studio的日志打印那里过滤onAdLoadFailed，有错误码打印
-  2.确保科学上网  
-  3.按照6中广告测试方法
-  4.Facebook广告必须安装Facebook且登录账号
-
-+ 错误码的含义？  
-  Admob错误码  
-  |  错误码   | 含义  |  
-    |  ----  | ----  |
-    | 0  | 内部错误. |
-    | 1  | 请求参数错误，例如广告key错误 |
-    | 2  | 网络异常，请求失败. |
-    | 3  | 没有广告填充. |
-    | 9  | 聚合广告没有广告填充. |
-
-    Facebook错误码  
-    |  错误码   | 含义  |
-    |  ----  | ----  |
-    | 1000  | Network Error. |
-    | 1001  | 没有广告填充，必须安装Facebook且登录 |
-    | 1002  | 广告加载太频繁. |
-    | 1012  | 广告sdk版本太低. |
-    | 2000，2001  | 内部错误. |
-
-    。。。。待完善
 
