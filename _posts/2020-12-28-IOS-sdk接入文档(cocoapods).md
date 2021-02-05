@@ -1,5 +1,5 @@
 ---
-title: IOS接入文档
+title: IOS接入文档-cocoapods（推荐）
 author: tangmingding
 date: 2020-12-28 15:00:00 +0800
 categories: [Blogging, Tutorial]
@@ -14,7 +14,17 @@ it, simply add the following line to your Podfile:
 
 
 ## 一.SDK集成
-### 1、本SDK所有第三方sdk均可以模块形式集成，下面是所有模块及对应的需要添加的预编译宏
+### 1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下
+```pod
+pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.76'
+```
+
+举例：
+```pod
+pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.76'
+```
+
+下面是所有模块及对应的需要添加的预编译宏
 ```pod
 模块：易娱 sdk          :'Core'
     穿山甲（国内）       :'bytedance_ads_cn_sdk'       BYTE_DANCE_ADS_ENABLED
@@ -45,23 +55,49 @@ it, simply add the following line to your Podfile:
 注意：引入的模块的预编译宏在debug和release下均需添加
 ```
 
-### 2、SDK目前只支持Cocoapods集成，Podfile文件的写法举例如下
-```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'gdt_action','gdt_ads_sdk', 'mtg_ads_sdk', 'fb_ads_sdk', 'unity_ads_sdk', 'vungle_ads_sdk', 'applovin_ads_sdk', 'iron_ads_sdk', 'firebase_sdk', 'crashlytics_sdk','fb_login_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.76'
-    （以上模块可以根据项目需要进行删减）
-```
-### 3、在终端里运行 pod install或者pod update，并留意执行是否有警告或者报错
+### 2、在终端运行 pod install
 
-### 4、执行成功后，用xcode打开当前项目目录下的$YOUR_PROJECT_NAME.xcworkspace文件
-
-### 5、根据项目需要修改编译配置
-```sh
-HEADER_SEARCH_PATHS 加上 $(inherited)
-LIBRARY_SEARCH_PATHS 加上 $(inherited)
-OTHER_LDFLAGS 加上 $(inherited)
-```
+### 3、执行成功后，用xcode打开当前项目目录下的xcworkspace文件
 
 ## 二.SDK初始化
+### SDK初始化流程
+```oc
+#import "EYAdManager.h"
+#import "EYAdConfig.h"
+#import "EYSdkUtils.h"
+
+//某些平台通过EYSdkUtils初始化
+[EYSdkUtils initFirebaseSdk];
+[EYSdkUtils initUMMobSdk:@"XXXXXXXXXXXXXXXXXX" channel:@"channel"];
+[EYSdkUtils initAppFlyer:@"XXXXXXXXXXXXXXXXX" appId:@"XXXXXXXXXXXXX"];
+[EYSdkUtils initGDTActionSdk:@"XXXXXX" secretkey:@"XXXXXXXXX"];
+
+//firebase 远程配置初始化: 引入EYRemoteConfigHelper.h头文件  
+NSDictionary* dict = [[NSDictionary alloc] init];
+[[EYRemoteConfigHelper sharedInstance] setupWithDefault:dict];
+
+//读取配置文件
+EYAdConfig* adConfig = [[EYAdConfig alloc] init];
+adConfig.adKeyData =  [EYSdkUtils readFileWithName:@"ios_ad_key_setting"];
+adConfig.adGroupData = [EYSdkUtils readFileWithName:@"ios_ad_cache_setting"];
+adConfig.adPlaceData = [EYSdkUtils readFileWithName:@"ios_ad_setting"];
+
+//某些平台通过设置adConfig初始化
+adConfig.unityClientId = @"XXXXXX";
+adConfig.vungleClientId = @"XXXXXXXXXXXXXXX";
+adConfig.ironSourceAppKey = @"XXXXXXX";
+adConfig.wmAppKey = @"XXXXXX";
+
+//如果有banner广告需要设置根控制器
+[[EYAdManager sharedInstance] setRootViewController:window.rootViewController];
+
+//如果集成了AdmobMediation且配置了vungle广告
+[EYAdManager sharedInstance].vunglePlacementIds = @[placepentId1, placepentId2...];
+
+[[EYAdManager sharedInstance] setupWithConfig:adConfig];
+```
+各平台初始化详细配置请阅读以下内容
+
 ### 1、穿山甲SDK 
 ```txt
 在GCC_PREPROCESSOR_DEFINITIONS 加上 BYTE_DANCE_ADS_ENABLED
@@ -206,44 +242,6 @@ Thinking  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 THINKING_ENABLED
 TradPlus  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 TRADPLUS_ENABLED 
 Admob要求  Info.plist 添加 GADApplicationIdentifier
 fb广告需要在info.plist里设置FacebookAppID
-```
-
-### 20、初始化对应模块后需读取配置文件，写法举例如下
-```oc
-#import "EYAdManager.h"
-#import "EYAdConfig.h"
-#import "EYSdkUtils.h"
-
-[EYSdkUtils initFirebaseSdk];
-[EYSdkUtils initUMMobSdk:@"XXXXXXXXXXXXXXXXXX" channel:@"channel"];
-[EYSdkUtils initAppFlyer:@"XXXXXXXXXXXXXXXXX" appId:@"XXXXXXXXXXXXX"];
-[EYSdkUtils initGDTActionSdk:@"XXXXXX" secretkey:@"XXXXXXXXX"];
-
-firebase 配置和初始化
-https://firebase.google.com/docs/ios/setup?authuser=0
-下载 GoogleService-Info.plist 并放到xcode的根目录
-
-firebase 远程配置初始化: 引入EYRemoteConfigHelper.h头文件  
-NSDictionary* dict = [[NSDictionary alloc] init];
-[[EYRemoteConfigHelper sharedInstance] setupWithDefault:dict];
-
-//读取配置文件初始化广告sdk
-EYAdConfig* adConfig = [[EYAdConfig alloc] init];
-adConfig.adKeyData =  [EYSdkUtils readFileWithName:@"ios_ad_key_setting"];
-adConfig.adGroupData = [EYSdkUtils readFileWithName:@"ios_ad_cache_setting"];
-adConfig.adPlaceData = [EYSdkUtils readFileWithName:@"ios_ad_setting"];
-adConfig.unityClientId = @"XXXXXX";
-adConfig.vungleClientId = @"XXXXXXXXXXXXXXX";
-adConfig.ironSourceAppKey = @"XXXXXXX";
-adConfig.wmAppKey = @"XXXXXX";
-
-//如果有banner广告需要设置根控制器
-[[EYAdManager sharedInstance] setRootViewController:window.rootViewController];
-
-//如果集成了AdmobMediation且配置了vungle广告
-[EYAdManager sharedInstance].vunglePlacementIds = @[placepentId1, placepentId2...];
-
-[[EYAdManager sharedInstance] setupWithConfig:adConfig];
 ```
 
 ## 三.加载广告
