@@ -8,10 +8,7 @@ pin: true
 ---
 
 ## Installation
-
-EyuLibrary-ios is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
+本文档为通过cocoapods集成说明文档，若需手动集成SDK请跳转至[SDK接入文档手动集成](https://eyugameqy.github.io/posts/IOS-sdk接入文档(手动接入)/)
 
 ## 一.SDK集成
 ### 1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下
