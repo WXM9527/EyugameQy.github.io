@@ -250,9 +250,7 @@ SdkCompat.getInstance().init(Application, builder);
 在你的Activity中调用
 
 ```java
- String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_FINE_LOCATION};
-SdkCompat.getInstance().requestPermissions(this, permissions, 1000);
+SdkCompat.getInstance().requestPermissions(this);
 ```
 
 ## 权限回调
