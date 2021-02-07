@@ -211,8 +211,6 @@ max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
 ```txt
 AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
 并集成需要用到的广告模块，比如用到了admob广告则需要额外添加"admob_sdk"模块，或者自己额外集成admob对应版本的的SDK
-（注意穿山甲应该使用国内版本模块bytedance_ads_cn_sdk)
-fb广告需要在info.plist里设置FacebookAppID
 [EYSdkUtils initAnyThinkWithAppID:appid AppKey:appKey];
 ```
 
