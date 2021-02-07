@@ -18,7 +18,7 @@ pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'htt
 
 举例：
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.76'
+pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.77'
 ```
 
 下面是所有模块及对应的需要添加的预编译宏
@@ -211,6 +211,7 @@ max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
 ```txt
 AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
 并集成需要用到的广告模块，比如用到了admob广告则需要额外添加"admob_sdk"模块，或者自己额外集成admob对应版本的的SDK
+（注意穿山甲应该使用国内版本模块bytedance_ads_cn_sdk)
 fb广告需要在info.plist里设置FacebookAppID
 [EYSdkUtils initAnyThinkWithAppID:appid AppKey:appKey];
 ```
@@ -341,7 +342,7 @@ NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 [EYEventUtils logEvent:@"EVENT_NAME"  parameters:dic];
 ```
 
-## IOS 14适配
+## IOS 14适配（重要）
 skadnetwork说明文档
 https://developer.apple.com/documentation/storekit/skadnetwork
 
@@ -525,6 +526,17 @@ if (@available(iOS 14, *)) {
      </dict>
  </array>
  ```
+
+Vungle
+```xml
+<key>SKAdNetworkItems</key>
+<array>
+    <dict>
+        <key>SKAdNetworkIdentifier</key>
+        <string>GTA9LK7P23.skadnetwork</string>
+    </dict>
+</array>
+```
 
 MAX
 ```xml
@@ -791,6 +803,11 @@ MAX
         <string>n9x2a789qt.skadnetwork</string>
     </dict>
 </array>
+```
+
+AnyThink
+```xml
+合并以上admob,unityads,vungle,mtg,穿山甲,sigmob的内容进行添加
 ```
 
 ## 常见问题
