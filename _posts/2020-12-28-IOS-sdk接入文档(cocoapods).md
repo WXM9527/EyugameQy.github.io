@@ -95,26 +95,32 @@ adConfig.wmAppKey = @"XXXXXX";
 ```
 各平台初始化详细配置请阅读以下内容
 
-### 1、穿山甲SDK 
+### 1、applovin MAX
+```txt
+max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
+在info.plist里设置AppLovinSdkKey以及FacebookAppID
+```
+
+### 2、穿山甲SDK 
 ```txt
 在GCC_PREPROCESSOR_DEFINITIONS 加上 BYTE_DANCE_ADS_ENABLED
 adConfig.wmAppKey = @"XXXXXX";//代码里设置穿山甲sdk app key
 ```
 
-### 2、广点通广告
+### 3、广点通广告
 ```txt
 广点通广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 GDT_ADS_ENABLED
 adConfig.gdtAppId = @"xxxxxxxxxx";//代码里设置广点通广告sdk app id
 ```
 
-### 3、mtg广告
+### 4、mtg广告
 ```txt
 mtg广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 MTG_ADS_ENABLED
 adConfig.mtgAppId = @"xxxxxx";//代码里设置mtg广告sdk app id 及app key
 adConfig.mtgAppKey = @"xxxxxxxxxxxxxxxxx";
 ```
 
-### 4、FB广告
+### 5、FB广告
 FB广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 FB_ADS_ENABLED 及FACEBOOK_ENABLED   
 请参考https://developers.facebook.com/docs/app-events/getting-started-app-events-ios   
 在app 对应的生命周期函数里加上   
@@ -129,30 +135,30 @@ FB广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 FB_ADS_ENABLED 及FACEBOOK
     <key>FacebookDisplayName</key>
     <string>xxxxxx</string>
 ```
-### 5、unity广告
+### 6、unity广告
 ```txt
 unity广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 UNITY_ADS_ENABLED
 adConfig.unityClientId = @"xxxxxxx";
 ```
-### 6、Vungle广告
+### 7、Vungle广告
 ```txt
 Vungle广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 VUNGLE_ADS_ENABLED
 adConfig.vungleClientId = @"xxxxxxxxxxx";
 ```
 
-### 7、applovin广告
+### 8、applovin广告
 ```txt
 applovin广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_ADS_ENABLED
 AppLovin需要在info.plist里设置AppLovinSdkKey
 ```
 
-### 8、ironsource广告
+### 9、ironsource广告
 ```txt
 ironsource广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 IRON_ADS_ENABLED
 adConfig.ironSourceAppKey = @"xxxxxxxx";
 ```
 
-### 9、firebase 及 crashlytics 以及ADMOB
+### 10、firebase 及 crashlytics 以及ADMOB
 #### firebase
 ```txt
 参考资料：https://firebase.google.com/docs/ios/setup?authuser=0
@@ -175,38 +181,37 @@ Info.plist 加上以下内容
 ```oc
 adConfig.admobClientId = @"ca-app-pub-7585239226773233~4631740346";
 ```
-### 10、友盟
+
+### 11、友盟
 ```txt
 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 UM_ENABLED
 [EYSdkUtils initUMMobSdk:@"XXXXXXXXXXXXXXXXXX" channel:@"channel"];
 ```
-### 11、AppsFlyer
+
+### 12、AppsFlyer
 ```txt
 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 AF_ENABLED
 [EYSdkUtils initAppFlyer:@"XXXXXXXXXXXXXXXXX" appId:@"XXXXXXXXXXXXX"];
 ```
 
-### 12、广点通买量
+### 13、广点通买量
 ```txt
 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 GDT_ACTION_ENABLED
 [EYSdkUtils initGDTActionSdk:@"XXXXXX" secretkey:@"XXXXXXXXX"];
 并在- (void)applicationDidBecomeActive:(UIApplication *)application中调用[EYSdkUtils doGDTSDKActionStartApp];
 ```
 
-### 13、FB登录
+### 14、FB登录
 ```txt
 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 FACEBOOK_LOGIN_ENABLED
 ```
-### 14、热云
+
+### 15、热云
 ```txt
 热云  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 TRACKING_ENABLED
 [EYSdkUtils initTrackingWithAppKey:appKey];
 ```
-### 15、applovin MAX
-```txt
-max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
-在info.plist里设置AppLovinSdkKey以及FacebookAppID
-```
+
 ### 16、AnyThink
 ```txt
 AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
