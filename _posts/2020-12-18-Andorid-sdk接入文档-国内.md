@@ -177,7 +177,7 @@ dependencies {
     implementation 'com.eyu.opensdk:core-ch:1.7.29'
     
     //国内通常使用穿山甲
-    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.30'
+    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.31'
     
     //按需求引入广告平台
 
