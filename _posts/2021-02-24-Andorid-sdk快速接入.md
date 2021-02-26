@@ -8,11 +8,11 @@ pin: true
 ---
 
 # 快速接入
-快速接入的库工程是对接入需要配置的项目进行了封装，如果你对Android不太熟，建议使用快速接入。<br>
-[库工程地址](https://github.com/EyugameQy/EyuLibrary-android/),下载到本地，然后在android studio中File->New->import module，将**quick_start**  module引入
+快速接入是通过引入提供的库工程，降低接入成本，适用于对Android不太熟的开发者。<br>
+将[库工程](https://github.com/EyugameQy/EyuLibrary-android/)下载到本地，然后在android studio中File->New->import module，将**quick_start**这个module引入到你自己的项目中
 
 # 基础配置
-
+针对你的工程
 ## AndroidX配置
 
 修改根目录的gradle.properties，加入以下代码块

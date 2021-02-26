@@ -1,5 +1,5 @@
 ---
-title: Android接入文档（国内）
+title: Android手动接入文档（国内）
 author: wuxiaowei
 date: 2021-01-31 16:00:00 +0800
 categories: [Blogging, Tutorial]
