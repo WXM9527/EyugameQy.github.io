@@ -8,7 +8,7 @@ pin: true
 ---
 
 # 快速接入
-快速接入是通过引入提供的库工程，降低接入成本，适用于对Android不太熟的开发者。<br>
+快速接入是通过引入提供的库工程，该库工程是对sdk的一个封装与集成，旨在降低接入成本，适用于对Android不太熟的开发者。<br>
 将[库工程](https://github.com/EyugameQy/EyuLibrary-android/)下载到本地，然后在android studio中File->New->import module，将**quick_start**这个module引入到你自己的项目中
 
 # 基础配置
