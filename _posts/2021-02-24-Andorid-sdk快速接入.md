@@ -1,7 +1,7 @@
 ---
 title: Android快速接入
 author: wuxiaowei
-date: 2021-02-23 17:00:00 +0800
+date: 2021-02-23 18:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,快速接入]
 pin: true
@@ -143,7 +143,7 @@ dependencies {
     //-----------------国内需要引入的--------------------
 
     //sdk核心库（国内必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.30'
+    implementation 'com.eyu.opensdk:core-ch:1.7.32'
 
         //国内通常使用穿山甲
     implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.31'
@@ -154,7 +154,7 @@ dependencies {
     implementation 'com.eyu.opensdk:core:1.7.31'
     
     //国外通常使用max
-    implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.2.27'
+    implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.3.27'
 
 }
 ```
