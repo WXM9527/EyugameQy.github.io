@@ -1,7 +1,7 @@
 ---
-title: Android手动接入文档（国外）
+title: Android自主接入文档（国外）
 author: wuxiaowei
-date: 2021-01-31 11:00:00 +0800
+date: 2021-02-21 11:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
