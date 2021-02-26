@@ -1,7 +1,7 @@
 ---
-title: Android接入文档（国内）
+title: Android自主接入文档（国内）
 author: wuxiaowei
-date: 2021-01-31 16:00:00 +0800
+date: 2021-02-21 16:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,国内]
 pin: true
@@ -101,6 +101,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ```xml
 <application
     android:networkSecurityConfig="@xml/network_security_config"
+    android:fullBackupContent="@xml/custom_backup_rule"
+    tools:replace="android:fullBackupContent"
     >
     
 </application>
@@ -174,10 +176,10 @@ dependencies {
     //implementation 'com.eyu:eyulibrary:xxx'
     
     //sdk核心库（必须）
-    implementation 'com.eyu.opensdk:core-ch:1.7.29'
+    implementation 'com.eyu.opensdk:core-ch:1.7.31'
     
     //国内通常使用穿山甲
-    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.30'
+    implementation 'com.eyu.opensdk.ad.mediation:pangle-ch-adapter:3.4.1.2.31'
     
     //按需求引入广告平台
 
