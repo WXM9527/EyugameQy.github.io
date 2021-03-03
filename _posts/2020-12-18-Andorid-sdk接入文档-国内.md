@@ -190,7 +190,7 @@ dependencies {
     //implementation 'com.eyu.opensdk.ad.mediation:gdt-adapter:4.294.1164.24'
 
      //topon
-    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.11.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:topon-adapter:5.7.11.26'
 
         //mtg
     //implementation 'com.eyu.opensdk.ad.mediation:mtg-ch-adapter:13.0.41.24'
@@ -207,21 +207,74 @@ dependencies {
 
 ## topon
 
-将topon的库拷贝到工程目录的libs下，库在这里[app_ch_new](https://github.com/EyugameQy/EyuLibrary-android/tree/master/app_ch_new/libs/)，topon_libs和topon_res整个**文件夹**复制到工程目录的libs，然后在gradle中的android下加入以下内容
+下载将[所需的topon的库](https://docs.toponad.com/#/zh-cn/android/download/package),拷贝到工程目录的libs下，然后在gradle中的android下加入以下内容
 
 ```groovy
-android{
-    sourceSets {
-        main {
-            res.srcDirs += 'topon_res'
-        }
-    }
-}
-
 dependencies {
     api fileTree(include: ['*.jar','*.aar'], dir: 'topon_libs')
 }
 
+```
+
+按需引入以下配置到manifest文件，根据你所引入的库来决定引入哪些
+
+```xml
+    <!-- 穿山甲 start -->
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+            android:authorities="${applicationId}.TTMultiProvider"
+            android:exported="false" />
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:authorities="${applicationId}.TTFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/anythink_bk_tt_file_path" />
+        </provider>
+    <!-- 穿山甲 end -->
+        <!-- source file: china/network_sdk/baidu/AndroidManifest.xml -->
+        <!-- 非信息广告必须添加 -->
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="screenSize|keyboard|keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <provider
+            android:name="com.baidu.mobads.openad.BdFileProvider"
+            android:authorities="${applicationId}.bd.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/anythink_bk_baidu_file_path" />
+        </provider>
+        <!-- source file: china/network_sdk/sigmob/AndroidManifest.xml -->
+
+        <!-- targetSDKVersion >= 24时才需要添加这个provider。
+        provider的authorities属性的值为${applicationId}.sigprovider -->
+        <provider
+            android:name="com.sigmob.sdk.SigmobFileProvider"
+            android:authorities="${applicationId}.sigprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/anythink_bk_sigmob_file_path"/>
+        </provider>
+
+        <!-- source file: china/network_sdk/gdt/AndroidManifest.xml -->
+
+        <provider
+            android:name="com.qq.e.comm.GDTFileProvider"
+            android:authorities="${applicationId}.gdt.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/anythink_bk_gdt_file_path" />
+        </provider>
 ```
 
 ## mtg
