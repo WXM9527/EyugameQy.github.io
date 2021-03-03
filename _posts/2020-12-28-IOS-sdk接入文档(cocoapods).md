@@ -13,12 +13,12 @@ pin: true
 ## 一.SDK集成
 ### 1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.80'
+pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.81'
 ```
 
 举例：
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.80'
+pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.81'
 ```
 
 下面是所有模块及对应的需要添加的预编译宏
@@ -40,7 +40,7 @@ pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk'
     热云               :'ReYunTracking'              TRACKING_ENABLED
     ADMOB             :'admob_sdk'                  ADMOB_ADS_ENABLED
     applovin MAX      :'applovin_max_sdk'           APPLOVIN_MAX_ENABLED
-    AnyThink          :'anythink_sdk'               ANYTHINK_ENABLED
+    TopOn(AnyThink)   :'anythink_sdk'               ANYTHINK_ENABLED
     AdmobMediation    :'admob_mediation_sdk'        ADMOB_MEDIATION_ENABLED ADMOB_ADS_ENABLED
     TradPlus          :'tradplus_sdk'               TRADPLUS_ENABLED
     sigmob            :'sigmob_ads_sdk'
@@ -212,7 +212,7 @@ adConfig.admobClientId = @"ca-app-pub-7585239226773233~4631740346";
 [EYSdkUtils initTrackingWithAppKey:appKey];
 ```
 
-### 16、AnyThink
+### 16、TopOn(AnyThink)
 ```txt
 AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
 并集成需要用到的广告模块，比如用到了admob广告则需要额外添加"admob_sdk"模块，或者自己额外集成admob对应版本的的SDK
@@ -300,6 +300,15 @@ bool isSuccess = [[EYAdManager sharedInstance] showBannerAd:@"banner_ad" viewGro
 -(void) onAdShowed:(NSString*) adPlaceId  type:(NSString*)type
 {
     NSLog(@"广告展示 onAdShowed adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+/*
+广告展示后的回调(带回调数据)，可选代理方法，目前仅topOn会回调此函数
+extraData即位回调的数据字典,其中adsource_price字段即为eCPM,其单位可通过currency字段获取, 精度可通过precision字段获取
+*/
+- (void)onAdShowed:(NSString *)adPlaceId type:(NSString *)type extraData:(NSDictionary *)extraData
+{
+    NSLog(@"广告展示 extraData = %@", extraData);
 }
 
 -(void) onAdClosed:(NSString*) adPlaceId  type:(NSString*)type
