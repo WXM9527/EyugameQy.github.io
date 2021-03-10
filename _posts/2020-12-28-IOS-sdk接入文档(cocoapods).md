@@ -43,6 +43,7 @@ pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk'
     TopOn(AnyThink)   :'anythink_sdk'               ANYTHINK_ENABLED
     AdmobMediation    :'admob_mediation_sdk'        ADMOB_MEDIATION_ENABLED ADMOB_ADS_ENABLED
     TradPlus          :'tradplus_sdk'               TRADPLUS_ENABLED
+    穿山甲聚合(abu)     :'abu_ad_sdk'                 ABUADSDK_ENABLED
     sigmob            :'sigmob_ads_sdk'
     
     数数(Thinking)     :'thinking_sdk'               THINKING_ENABLED
@@ -245,6 +246,12 @@ Admob要求  Info.plist 添加 GADApplicationIdentifier
 fb广告需要在info.plist里设置FacebookAppID
 ```
 
+### 19、穿山甲聚合（abu）
+```txt
+ABUAd 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ABUADSDK_ENABLED 
+adConfig.abuAppId = APP_ID;
+```
+
 ## 三.加载广告
 一般来说cache配置文件默认配置isAutoLoad的值为true，表示SDK初始化后将自动加载缓存广告,可直接跳过此步骤,若需手动加载则将对应的值改为false，并手动调用load方法加载广告
 ```oc
@@ -260,11 +267,15 @@ fb广告需要在info.plist里设置FacebookAppID
 //加载Banner
 [[EYAdManager sharedInstance] loadBannerAd: placeId];
 
+//加载开屏广告
+[[EYAdManager sharedInstance] loadSplashAd: placeId];
+
 //判断广告是否加载完成
 bool isNativeAdLoaded = [[EYAdManager sharedInstance] isNativeAdLoaded: placeId];
 bool isBannerAdLoaded = [[EYAdManager sharedInstance] isBannerAdLoaded: placeId];
 bool isInterstitialAdLoaded = [[EYAdManager sharedInstance] isInterstitialAdLoaded: placeId];
 bool isRewardAdLoaded = [[EYAdManager sharedInstance] isRewardAdLoaded: placeId];
+bool isSplashAdLoaded = [[EYAdManager sharedInstance] isSplashAdLoaded: placeId];
 ```
 
 ## 四.显示广告
@@ -280,6 +291,9 @@ bool isRewardAdLoaded = [[EYAdManager sharedInstance] isRewardAdLoaded: placeId]
 
 //展示Banner广告 banner_ad为广告位id，对应ios_ad_setting.json配置
 bool isSuccess = [[EYAdManager sharedInstance] showBannerAd:@"banner_ad" viewGroup:self.bannerRootView];
+
+//展示Splash广告 splash_ad为广告位id，对应ios_ad_setting.json配置
+[[EYAdManager sharedInstance] showSplashAd:@"splash_ad" withViewController:self];
 ```
 
 ## 五.广告事件回调
@@ -828,6 +842,11 @@ MAX
 AnyThink
 ```xml
 合并以上admob,unityads,vungle,mtg,穿山甲,sigmob的内容进行添加
+```
+
+穿山甲聚合
+```xml
+合并以上admob,gdt,mtg,穿山甲,sigmob,unityads的内容进行添加
 ```
 
 ## 常见问题
