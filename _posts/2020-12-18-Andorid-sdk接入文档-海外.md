@@ -100,7 +100,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ```xml
 <application
     android:networkSecurityConfig="@xml/network_security_config"
-    
+    android:fullBackupContent="@xml/custom_backup_rule"
+    tools:replace="android:fullBackupContent"
     >
     
 </application>
