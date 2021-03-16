@@ -40,6 +40,19 @@ android.enableJetifier=true
 ```
 
 
+## （国外）Firebase配置
+
+从firebase控制台下载 google-services.json ，并复制到 Phone Module目录下
+
+
+## （国外）Phone Module的build.gradle 添加以下内容
+
+```groovy
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+```
+
 ## （国外）根目录的build.gradle增加以下内容
 
 **注意下面注释的内容**

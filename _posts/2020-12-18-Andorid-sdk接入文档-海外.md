@@ -1,7 +1,7 @@
 ---
 title: Android自主接入文档（国外）
 author: wuxiaowei
-date: 2021-02-21 17:00:00 +0800
+date: 2021-03-15 17:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -35,7 +35,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 
 您必须使用 MultiDex 支持库并对应用项目进行以下修改：
 
-### 修改模块级 build.gradle 文件
+### 修改app模块级 build.gradle 文件
 
 启用 MultiDex，并将 MultiDex 库添加为依赖项，如下所示：
 
@@ -100,7 +100,8 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ```xml
 <application
     android:networkSecurityConfig="@xml/network_security_config"
-    
+    android:fullBackupContent="@xml/custom_backup_rule"
+    tools:replace="android:fullBackupContent"
     >
     
 </application>
@@ -225,6 +226,16 @@ dependencies {
     //tradplus
     //implementation 'com.eyu.opensdk.ad.mediation:tradplus-adapter:5.2.8.1.24'
 }
+
+```
+## id配置
+
+在res/values/strings.xml中添加对应的id
+
+```xml
+    <string name="facebook_app_id" translatable="false">填写你的appid</string>
+    <string name="google_ads_app_id" translatable="false">填写你的appid</string>
+    <string name="applovin_sdk_key" translatable="false">9aiR-8NXTyh84IIr1CWylMWBF4Fkf1Qpc8FaHc6qZoyd4FS6S-2BKZNaecIIdk6EtLq8zwzWiw8o9aucZxovU9</string>
 
 ```
 
