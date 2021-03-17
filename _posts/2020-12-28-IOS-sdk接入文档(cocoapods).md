@@ -1,7 +1,7 @@
 ---
 title: IOS接入文档-cocoapods（推荐）
 author: tangmingding
-date: 2020-12-28 15:00:00 +0800
+date: 2021-3-17 15:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [IOS]
 pin: true
