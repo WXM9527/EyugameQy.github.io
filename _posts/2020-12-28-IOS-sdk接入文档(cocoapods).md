@@ -399,7 +399,7 @@ if (@available(iOS 14, *)) {
 ```
 注意：该权限只有Xcode 12及以上版本才有，需要更新Xcode 12版本来进行测试使用。
 
-3.使用S​​KAdNetwork跟踪转化  
+3.使用SKAdNetwork跟踪转化  
 使用Apple的转化跟踪SKAdNetwork，这意味着即使IDFA不可用，广告平台也可以通过这个获取应用安装归因。请参阅Apple的SKAdNetwork文档，以了解更多信息。  
 要启用此功能，您需要在info.plist中添加SKAdNetworkItems，下面例举几个常用的SDK平台需要添加的内容，其他请参考对应官方文档
 
