@@ -316,10 +316,8 @@ bool isSuccess = [[EYAdManager sharedInstance] showBannerAd:@"banner_ad" viewGro
     NSLog(@"广告展示 onAdShowed adPlaceId = %@, type = %@", adPlaceId, type);
 }
 
-/*
-广告展示后的回调(带回调数据)，可选代理方法，目前仅topOn会回调此函数
-extraData即位回调的数据字典,其中adsource_price字段即为eCPM,其单位可通过currency字段获取, 精度可通过precision字段获取
-*/
+//广告展示后的回调(带回调数据)，可选代理方法，目前仅topOn会回调此函数
+//extraData即位回调的数据字典,其中adsource_price字段即为eCPM,其单位可通过currency字段获取, //精度可通过precision字段获取
 - (void)onAdShowed:(NSString *)adPlaceId type:(NSString *)type extraData:(NSDictionary *)extraData
 {
     NSLog(@"广告展示 extraData = %@", extraData);
