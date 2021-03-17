@@ -403,8 +403,8 @@ if (@available(iOS 14, *)) {
 使用Apple的转化跟踪SKAdNetwork，这意味着即使IDFA不可用，广告平台也可以通过这个获取应用安装归因。请参阅Apple的SKAdNetwork文档，以了解更多信息。  
 要启用此功能，您需要在info.plist中添加SKAdNetworkItems，下面例举几个常用的SDK平台需要添加的内容，其他请参考对应官方文档
 
- Google Admob
- ```xml
+Google Admob
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -412,10 +412,10 @@ if (@available(iOS 14, *)) {
        <string>cstr6suwn9.skadnetwork</string>
      </dict>
  </array>
- ```
+```
  
- 穿山甲(Pangle)
- ``` xml
+穿山甲(Pangle)
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -427,10 +427,10 @@ if (@available(iOS 14, *)) {
          <string>22mmun2rn5.skadnetwork</string>
      </dict>
  </array>
- ```
+```
  
- UnityAds
- ```xml
+UnityAds
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -442,10 +442,10 @@ if (@available(iOS 14, *)) {
          <string>bvpn9ufa9b.skadnetwork</string>
      </dict>
  </array>
- ```
+```
  
- Mintegral
- ```xml
+Mintegral
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -525,10 +525,10 @@ if (@available(iOS 14, *)) {
          <string>hs6bdukanm.skadnetwork</string>
      </dict>
  </array>
- ```
+```
  
- Facebook
- ```xml
+Facebook
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -540,10 +540,10 @@ if (@available(iOS 14, *)) {
          <string>n38lu8286q.skadnetwork</string>
      </dict>
  </array>
- ```
+```
  
- Sigmob
- ```xml
+Sigmob
+```xml
  <key>SKAdNetworkItems</key>
  <array>
      <dict>
@@ -551,7 +551,7 @@ if (@available(iOS 14, *)) {
          <string>58922NB4GD.skadnetwork</string>
      </dict>
  </array>
- ```
+```
 
 Vungle
 ```xml
