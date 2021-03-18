@@ -57,7 +57,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
 ### 继承 Application 类，执行以下某项操作：
 
 + 重写 attachBaseContext() 方法并调用 MultiDex.install(this) 以启用 MultiDex：
-+ 
+  
   ```java
     public class MyApplication extends Application {
         @Override
