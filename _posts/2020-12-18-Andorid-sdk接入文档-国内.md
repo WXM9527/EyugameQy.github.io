@@ -107,7 +107,7 @@ Android 插件会通过重写现有第三方库的二进制文件，自动将这
     
 </application>
 ```
-其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
++ 其中在项目的res/xml文件夹新增network_security_config.xml，内容如下：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -155,15 +155,12 @@ app module的build.gradle 添加以下内容
 ```groovy
 
 defaultConfig {
-    ndk { abiFilters  'armeabi-v7a','x86','arm64-v8a','x86_64','armeabi' }
+    ndk { abiFilters  'armeabi-v7a','arm64-v8a'}
 }
 
 packagingOptions {
     doNotStrip "*/armeabi-v7a/*.so"
-    doNotStrip "*/x86/*.so"
     doNotStrip "*/arm64-v8a/*.so"
-    doNotStrip "*/x86_64/*.so"
-    doNotStrip "armeabi.so"
 }
 
 repositories {
