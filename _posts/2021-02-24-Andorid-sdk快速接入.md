@@ -1,7 +1,7 @@
 ---
 title: Android快速接入
 author: wuxiaowei
-date: 2021-02-23 18:00:00 +0800
+date: 2021-02-24 18:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,快速接入]
 pin: true
@@ -173,6 +173,7 @@ dependencies {
 ```
 
 ## 修改manifest文件
+
 添加以下内容
 ```xml
 <application
