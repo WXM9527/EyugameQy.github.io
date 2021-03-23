@@ -13,12 +13,12 @@ pin: true
 ## 一.SDK集成
 ### 1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.97'
+pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.98'
 ```
 
 举例：
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.97'
+pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.98'
 ```
 
 下面是所有模块及对应的需要添加的预编译宏
@@ -347,6 +347,74 @@ bool isSuccess = [[EYAdManager sharedInstance] showBannerAd:@"banner_ad" viewGro
     NSLog(@"lwq, onAdImpression adPlaceId = %@, type = %@", adPlaceId, type);
 }
 ```
+
+## 自定义原生广告
+原生广告默认会加载SDK包中的nativeAd.xib中的布局，目前默认布局中的控件有：
+```oc
+@interface YourCustomClass : EYNativeAdView
+//最底层视图
+@property(nonatomic,strong) IBOutlet UIView* nativeAdLayout;
+//广告icorn
+@property(nonatomic,strong) IBOutlet UIImageView* nativeAdIcon;
+//广告标题
+@property(nonatomic,strong) IBOutlet UILabel* nativeAdTitle;
+//广告描述
+@property(nonatomic,strong) IBOutlet UILabel* nativeAdDesc;
+//视频/图片 视图
+@property(nonatomic,strong) IBOutlet UIView* mediaLayout;
+//跳转按钮
+@property(nonatomic,strong) IBOutlet UIButton* actBtn;
+//关闭按钮
+@property(nonatomic,strong) IBOutlet UIView* closeBtn;
+@end
+```
+若想自定义布局可以用以下两种方式
+
+### 一、代码布局
+1.注册自定义类
+```oc
+//注意需要在[[EYAdManager sharedInstance] setupWithConfig:adConfig]之后调用
+[[EYAdManager sharedInstance] registerNativeAdCustomClass:[YourCustomClass class]];
+```
+
+2.创建自定义类继承自EYNativeAdView
+```oc
+@interface YourCustomClass : EYNativeAdView
+
+@end
+```
+
+3.目前提供以下两个方法重写布局
+```oc
+@implementation YourCustomClass
+//自定义类被初始化时调用,可以布局或初始化控件
+- (void)initFromXib {
+    NSLog(@"custom view init from xib");
+}
+
+//布局子控件时调用,可以布局控件
+- (void)layoutSubviews {
+    NSLog(@"custom view layout subviews");
+}
+@end
+```
+
+### 二、自定义xib布局
+1.修改ios_ad_setting.json文件中原生广告的nativeAdLayout值改为自定义xib的名字(默认为nativeAd)，如下：
+```oc
+{
+    "isEnabled":"true",
+    "desc":"原生广告",
+    "id":"native_ad",
+    "nativeAdLayout":YourXibName,
+    "cacheGroup":"native_ad"
+}
+@end
+```
+
+2.xib设置关联EYNativeAdView类
+
+3.xib中添加自己的控件并连线
 
 ## 事件上报
 ### 1、Thinking（数数）事件上传
