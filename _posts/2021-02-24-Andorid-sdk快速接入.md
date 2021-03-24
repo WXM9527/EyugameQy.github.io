@@ -48,6 +48,7 @@ android.enableJetifier=true
 ## （国外）Phone Module的build.gradle 添加以下内容
 
 ```groovy
+apply plugin: 'com.android.application' //放在这行下面
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
