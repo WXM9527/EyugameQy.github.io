@@ -160,12 +160,13 @@ allprojects {
 
 ## Firebase配置
 
-从firebase控制台下载 google-services.json ，并复制到 Phone Module目录下
+从firebase控制台下载 google-services.json ，并复制到 Phone Module（unity 的launcher）目录下
 
 
 ## Phone Module的build.gradle 添加以下内容
 
 ```groovy
+apply plugin: 'com.android.application' //放在这行下面
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
