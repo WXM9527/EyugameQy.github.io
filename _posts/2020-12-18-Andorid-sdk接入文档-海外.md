@@ -1,7 +1,7 @@
 ---
 title: Android自主接入文档（国外）
 author: wuxiaowei
-date: 2021-03-15 17:00:00 +0800
+date: 2021-03-18 17:00:00 +0800
 categories: [Blogging, Tutorial]
 tags: [Android,海外]
 pin: true
@@ -180,8 +180,8 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 ```groovy
 
-implementation 'com.eyu.opensdk:core:1.7.33'
-implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.3.28'
+implementation 'com.eyu.opensdk:core:1.7.34'
+implementation 'com.eyu.opensdk.ad.mediation:max-adapter:10.1.1.29'
 
 ```
 
@@ -198,16 +198,16 @@ implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.3.28'
 dependencies {
 
     //max
-    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:9.15.3.28'
+    //implementation 'com.eyu.opensdk.ad.mediation:max-adapter:10.1.1.29'
 
     //admob    
-    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.7.0.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:admob-adapter:19.8.0.25'
 
     //admob聚合
     //implementation 'com.eyu.opensdk.ad.mediation:admob-compat_adapter:19.7.0.24'
     
     //facebook
-    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.2.0.24'
+    //implementation 'com.eyu.opensdk.ad.mediation:facebook-adapter:6.3.0.24'
     
     //applovin
     //implementation 'com.eyu.opensdk.ad.mediation:applovin-adapter:9.15.1.24'
