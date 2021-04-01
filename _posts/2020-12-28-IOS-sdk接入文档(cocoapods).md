@@ -13,12 +13,12 @@ pin: true
 ## 一.SDK集成
 ### 1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.98'
+pod 'EyuLibrary-ios',:subspecs => ['Core','模块一','模块二'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.99'
 ```
 
 举例：
 ```pod
-pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.98'
+pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git => 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =>'1.3.99'
 ```
 
 下面是所有模块及对应的需要添加的预编译宏
@@ -28,7 +28,7 @@ pod 'EyuLibrary-ios',:subspecs => ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk'
     穿山甲（国外）       :'bytedance_ads_global_sdk'   BYTE_DANCE_ADS_ENABLED
     广点通广告          :'gdt_ads_sdk'                GDT_ADS_ENABLED
     mtg广告            :'mtg_ads_sdk'                MTG_ADS_ENABLED
-    FB广告             :'fb_ads_sdk'                 FACEBOOK_ENABLED FB_ADS_ENABLED
+    FB广告及分析        :'fb_ads_sdk'                 FACEBOOK_ENABLED FB_ADS_ENABLED
     unity广告          :'unity_ads_sdk'              UNITY_ADS_ENABLED
     Vungle广告         :'vungle_ads_sdk'             VUNGLE_ADS_ENABLED
     applovin广告       :'applovin_ads_sdk'           APPLOVIN_ADS_ENABLED
@@ -95,11 +95,13 @@ adConfig.wmAppKey = @"XXXXXX";
 [[EYAdManager sharedInstance] setupWithConfig:adConfig];
 ```
 各平台初始化详细配置请阅读以下内容
+注意：凡是用到FB广告的聚合都需要额外引入fb_ads_sdk模块并按下面第5条初始化FBSDK！
 
 ### 1、applovin MAX
 ```txt
 max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
 在info.plist里设置AppLovinSdkKey以及FacebookAppID
+引入FB模块并初始化FBSDK（见第五条）
 ```
 
 ### 2、穿山甲SDK 
@@ -224,7 +226,7 @@ AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
 ```txt
 AdmobMediation  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ADMOB_MEDIATION_ENABLED ADMOB_ADS_ENABLED
 配置并初始化admob
-fb广告需要在info.plist里设置FacebookAppID
+引入FB模块并初始化FBSDK（见第五条）
 如果有vungle广告需要配置 [EYAdManager sharedInstance].vunglePlacementIds = [placepentId1, placepentId2...];
 ```
 
@@ -243,7 +245,7 @@ Thinking  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 THINKING_ENABLED
 ```txt
 TradPlus  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 TRADPLUS_ENABLED 
 Admob要求  Info.plist 添加 GADApplicationIdentifier
-fb广告需要在info.plist里设置FacebookAppID
+引入FB模块并初始化FBSDK（见第五条）
 ```
 
 ### 19、穿山甲聚合（abu）
