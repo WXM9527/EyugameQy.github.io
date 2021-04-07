@@ -1,0 +1,1173 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.7.0"><meta name="generator" content="Jekyll v4.1.1" /><meta property="og:title" content="IOS接入文档-cocoapods（推荐）" /><meta name="author" content="tangmingding" /><meta property="og:locale" content="en_US" /><meta name="description" content="Installation 本文档为通过cocoapods集成说明文档，若需手动集成SDK请跳转至SDK接入文档手动集成" /><meta property="og:description" content="Installation 本文档为通过cocoapods集成说明文档，若需手动集成SDK请跳转至SDK接入文档手动集成" /><link rel="canonical" href="https://eyugameqy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/" /><meta property="og:url" content="https://eyugameqy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/" /><meta property="og:site_name" content="EyugameQy" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-03-17T15:00:00+08:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="IOS接入文档-cocoapods（推荐）" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@tangmingding" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"description":"Installation 本文档为通过cocoapods集成说明文档，若需手动集成SDK请跳转至SDK接入文档手动集成","url":"https://eyugameqy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/","headline":"IOS接入文档-cocoapods（推荐）","dateModified":"2021-03-31T18:10:52+08:00","@type":"BlogPosting","datePublished":"2021-03-17T15:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://eyugameqy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/"},"author":{"@type":"Person","name":"tangmingding"},"@context":"https://schema.org"}</script><title>IOS接入文档-cocoapods（推荐） | EyugameQy</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" href="/assets/css/post.css" as="style"><link rel="stylesheet" href="/assets/css/post.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/sample/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">EyugameQy</a></div><div class="site-subtitle font-italic">SDK文档.</div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/about/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <span id="mode-toggle-wrapper"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span> <span class="icon-border"></span> <a href="https://github.com/EyugameQy" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Posts </a> </span> <span>IOS接入文档-cocoapods（推荐）</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>IOS接入文档-cocoapods（推荐）</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Wed, Mar 17, 2021, 3:00 PM +0800" > Mar 17 <i class="unloaded">2021-03-17T15:00:00+08:00</i> </span> by <span class="author"> tangmingding </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Wed, Mar 31, 2021, 6:10 PM +0800" > Mar 31 <i class="unloaded">2021-03-31T18:10:52+08:00</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3501 words">19 min</span></div></div><div class="post-content"><h2 id="installation">Installation</h2><p>本文档为通过cocoapods集成说明文档，若需手动集成SDK请跳转至<a href="https://eyugameqy.github.io/posts/IOS-sdk接入文档(手动接入)/">SDK接入文档手动集成</a></p><h2 id="一sdk集成">一.SDK集成</h2><h3 id="1本sdk所有第三方sdk均可以模块形式集成podfile的写法如下">1、本SDK所有第三方sdk均可以模块形式集成，podfile的写法如下</h3><pre><code class="language-pod">pod 'EyuLibrary-ios',:subspecs =&gt; ['Core','模块一','模块二'], :git =&gt; 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =&gt;'1.3.99'
+</code></pre><p>举例：</p><pre><code class="language-pod">pod 'EyuLibrary-ios',:subspecs =&gt; ['Core','um_sdk', 'af_sdk', 'applovin_max_sdk','gdt_ads_sdk',  'firebase_sdk'], :git =&gt; 'https://github.com/EyugameQy/EyuLibrary-ios.git',:tag =&gt;'1.3.99'
+</code></pre><p>下面是所有模块及对应的需要添加的预编译宏</p><pre><code class="language-pod">模块：易娱 sdk          :'Core'
+    穿山甲（国内）       :'bytedance_ads_cn_sdk'       BYTE_DANCE_ADS_ENABLED
+    穿山甲（国外）       :'bytedance_ads_global_sdk'   BYTE_DANCE_ADS_ENABLED
+    广点通广告          :'gdt_ads_sdk'                GDT_ADS_ENABLED
+    mtg广告            :'mtg_ads_sdk'                MTG_ADS_ENABLED
+    FB广告及分析        :'fb_ads_sdk'                 FACEBOOK_ENABLED FB_ADS_ENABLED
+    unity广告          :'unity_ads_sdk'              UNITY_ADS_ENABLED
+    Vungle广告         :'vungle_ads_sdk'             VUNGLE_ADS_ENABLED
+    applovin广告       :'applovin_ads_sdk'           APPLOVIN_ADS_ENABLED
+    ironsource广告     :'iron_ads_sdk'               IRON_ADS_ENABLED
+    firebase          :'firebase_sdk'               FIREBASE_ENABLED
+    AppsFlyer         :'af_sdk'                     AF_ENABLED
+    广点通买量          :'gdt_action'                 GDT_ACTION_ENABLED
+    FB登录             :'fb_login_sdk'               FACEBOOK_ENABLED FACEBOOK_LOGIN_ENABLED 
+    热云               :'ReYunTracking'              TRACKING_ENABLED
+    ADMOB             :'admob_sdk'                  ADMOB_ADS_ENABLED
+    applovin MAX      :'applovin_max_sdk'           APPLOVIN_MAX_ENABLED
+    TopOn(AnyThink)   :'anythink_sdk'               ANYTHINK_ENABLED
+    AdmobMediation    :'admob_mediation_sdk'        ADMOB_MEDIATION_ENABLED ADMOB_ADS_ENABLED
+    TradPlus          :'tradplus_sdk'               TRADPLUS_ENABLED
+    穿山甲聚合(abu)     :'abu_ad_sdk'                 ABUADSDK_ENABLED
+    sigmob            :'sigmob_ads_sdk'
+    
+    数数(Thinking)     :'thinking_sdk'               THINKING_ENABLED
+    友盟               :'um_sdk'                     UM_ENABLED
+    crashlytics       :'crashlytics_sdk'
+    
+注意：引入的模块的预编译宏在debug和release下均需添加
+</code></pre><h3 id="2在终端运行-pod-install">2、在终端运行 pod install</h3><h3 id="3执行成功后用xcode打开当前项目目录下的xcworkspace文件">3、执行成功后，用xcode打开当前项目目录下的xcworkspace文件</h3><h2 id="二sdk初始化">二.SDK初始化</h2><h3 id="sdk初始化流程">SDK初始化流程</h3><pre><code class="language-oc">#import "EYAdManager.h"
+#import "EYAdConfig.h"
+#import "EYSdkUtils.h"
+
+//某些平台通过EYSdkUtils初始化
+[EYSdkUtils initFirebaseSdk];
+[EYSdkUtils initUMMobSdk:@"XXXXXXXXXXXXXXXXXX" channel:@"channel"];
+[EYSdkUtils initAppFlyer:@"XXXXXXXXXXXXXXXXX" appId:@"XXXXXXXXXXXXX"];
+[EYSdkUtils initGDTActionSdk:@"XXXXXX" secretkey:@"XXXXXXXXX"];
+
+//firebase 远程配置初始化: 引入EYRemoteConfigHelper.h头文件  
+NSDictionary* dict = [[NSDictionary alloc] init];
+[[EYRemoteConfigHelper sharedInstance] setupWithDefault:dict];
+
+//读取配置文件
+EYAdConfig* adConfig = [[EYAdConfig alloc] init];
+adConfig.adKeyData =  [EYSdkUtils readFileWithName:@"ios_ad_key_setting"];
+adConfig.adGroupData = [EYSdkUtils readFileWithName:@"ios_ad_cache_setting"];
+adConfig.adPlaceData = [EYSdkUtils readFileWithName:@"ios_ad_setting"];
+
+//某些平台通过设置adConfig初始化
+adConfig.unityClientId = @"XXXXXX";
+adConfig.vungleClientId = @"XXXXXXXXXXXXXXX";
+adConfig.ironSourceAppKey = @"XXXXXXX";
+adConfig.wmAppKey = @"XXXXXX";
+
+//如果有banner广告需要设置根控制器
+[[EYAdManager sharedInstance] setRootViewController:window.rootViewController];
+
+//如果集成了AdmobMediation且配置了vungle广告
+[EYAdManager sharedInstance].vunglePlacementIds = @[placepentId1, placepentId2...];
+
+[[EYAdManager sharedInstance] setupWithConfig:adConfig];
+</code></pre><p>各平台初始化详细配置请阅读以下内容 注意：凡是用到FB广告的聚合都需要额外引入fb_ads_sdk模块并按下面第5条初始化FBSDK！</p><h3 id="1applovin-max">1、applovin MAX</h3><pre><code class="language-txt">max  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_MAX_ENABLED
+在info.plist里设置AppLovinSdkKey以及FacebookAppID
+引入FB模块并初始化FBSDK（见第五条）
+</code></pre><h3 id="2穿山甲sdk">2、穿山甲SDK</h3><pre><code class="language-txt">在GCC_PREPROCESSOR_DEFINITIONS 加上 BYTE_DANCE_ADS_ENABLED
+adConfig.wmAppKey = @"XXXXXX";//代码里设置穿山甲sdk app key
+</code></pre><h3 id="3广点通广告">3、广点通广告</h3><pre><code class="language-txt">广点通广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 GDT_ADS_ENABLED
+adConfig.gdtAppId = @"xxxxxxxxxx";//代码里设置广点通广告sdk app id
+</code></pre><h3 id="4mtg广告">4、mtg广告</h3><pre><code class="language-txt">mtg广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 MTG_ADS_ENABLED
+adConfig.mtgAppId = @"xxxxxx";//代码里设置mtg广告sdk app id 及app key
+adConfig.mtgAppKey = @"xxxxxxxxxxxxxxxxx";
+</code></pre><h3 id="5fb广告">5、FB广告</h3><p>FB广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 FB_ADS_ENABLED 及FACEBOOK_ENABLED <br /> 请参考https://developers.facebook.com/docs/app-events/getting-started-app-events-ios <br /> 在app 对应的生命周期函数里加上</p><pre><code class="language-oc">[EYSdkUtils initFacebookSdkWithApplication:application options:launchOptions];
+[EYSdkUtils application:app openURL:url options:options];
+</code></pre><p>在Info.plist文件里加上</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>    <span class="nt">&lt;key&gt;</span>FacebookAppID<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>xxxxxx<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>FacebookDisplayName<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>xxxxxx<span class="nt">&lt;/string&gt;</span>
+</pre></table></code></div></div><h3 id="6unity广告">6、unity广告</h3><pre><code class="language-txt">unity广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 UNITY_ADS_ENABLED
+adConfig.unityClientId = @"xxxxxxx";
+</code></pre><h3 id="7vungle广告">7、Vungle广告</h3><pre><code class="language-txt">Vungle广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 VUNGLE_ADS_ENABLED
+adConfig.vungleClientId = @"xxxxxxxxxxx";
+</code></pre><h3 id="8applovin广告">8、applovin广告</h3><pre><code class="language-txt">applovin广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 APPLOVIN_ADS_ENABLED
+AppLovin需要在info.plist里设置AppLovinSdkKey
+</code></pre><h3 id="9ironsource广告">9、ironsource广告</h3><pre><code class="language-txt">ironsource广告 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 IRON_ADS_ENABLED
+adConfig.ironSourceAppKey = @"xxxxxxxx";
+</code></pre><h3 id="10firebase-及-crashlytics-以及admob">10、firebase 及 crashlytics 以及ADMOB</h3><h4 id="firebase">firebase</h4><pre><code class="language-txt">参考资料：https://firebase.google.com/docs/ios/setup?authuser=0
+从firebase下载 GoogleService-Info.plist 并放到xcode的根目录
+在GCC_PREPROCESSOR_DEFINITIONS 加上 FIREBASE_ENABLED 
+[EYSdkUtils initFirebaseSdk];
+</code></pre><h4 id="admob">admob</h4><pre><code class="language-txt">admob可以通过"firebase_sdk"模块或者"admob_sdk"模块来引入，海外使用firebase_sdk，国内使用admob_sdk
+在GCC_PREPROCESSOR_DEFINITIONS 加上 ADMOB_ADS_ENABLED
+</code></pre><p>Info.plist 加上以下内容</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="nt">&lt;key&gt;</span>GADIsAdManagerApp<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;true/&gt;</span>
+</pre></table></code></div></div><p>配置admob client id</p><pre><code class="language-oc">adConfig.admobClientId = @"ca-app-pub-7585239226773233~4631740346";
+</code></pre><h3 id="11友盟">11、友盟</h3><pre><code class="language-txt">需要在GCC_PREPROCESSOR_DEFINITIONS 加上 UM_ENABLED
+[EYSdkUtils initUMMobSdk:@"XXXXXXXXXXXXXXXXXX" channel:@"channel"];
+</code></pre><h3 id="12appsflyer">12、AppsFlyer</h3><pre><code class="language-txt">需要在GCC_PREPROCESSOR_DEFINITIONS 加上 AF_ENABLED
+[EYSdkUtils initAppFlyer:@"XXXXXXXXXXXXXXXXX" appId:@"XXXXXXXXXXXXX"];
+</code></pre><h3 id="13广点通买量">13、广点通买量</h3><pre><code class="language-txt">需要在GCC_PREPROCESSOR_DEFINITIONS 加上 GDT_ACTION_ENABLED
+[EYSdkUtils initGDTActionSdk:@"XXXXXX" secretkey:@"XXXXXXXXX"];
+并在- (void)applicationDidBecomeActive:(UIApplication *)application中调用[EYSdkUtils doGDTSDKActionStartApp];
+</code></pre><h3 id="14fb登录">14、FB登录</h3><pre><code class="language-txt">需要在GCC_PREPROCESSOR_DEFINITIONS 加上 FACEBOOK_LOGIN_ENABLED
+</code></pre><h3 id="15热云">15、热云</h3><pre><code class="language-txt">热云  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 TRACKING_ENABLED
+[EYSdkUtils initTrackingWithAppKey:appKey];
+</code></pre><h3 id="16toponanythink">16、TopOn(AnyThink)</h3><pre><code class="language-txt">AnyThink  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ANYTHINK_ENABLED
+并集成需要用到的广告模块，比如用到了admob广告则需要额外添加"admob_sdk"模块，或者自己额外集成admob对应版本的的SDK
+[EYSdkUtils initAnyThinkWithAppID:appid AppKey:appKey];
+</code></pre><h3 id="17admobmediation">17、AdmobMediation</h3><pre><code class="language-txt">AdmobMediation  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ADMOB_MEDIATION_ENABLED ADMOB_ADS_ENABLED
+配置并初始化admob
+引入FB模块并初始化FBSDK（见第五条）
+如果有vungle广告需要配置 [EYAdManager sharedInstance].vunglePlacementIds = [placepentId1, placepentId2...];
+</code></pre><h3 id="18thinking数数">18、Thinking（数数）</h3><pre><code class="language-txt">Thinking  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 THINKING_ENABLED 
+
+//默认使用云服务，服务器地址: https://receiver.ta.thinkingdata.cn 
+[EYSdkUtils initThinkWithAppID:APP_ID]; 
+
+//如果您使用的是私有化部署的版本请传入自己的url地址 
+[EYSdkUtils initThinkWithAppID:APP_ID Url:SERVER_URL]; 
+</code></pre><h3 id="19tradplus">19、TradPlus</h3><pre><code class="language-txt">TradPlus  需要在GCC_PREPROCESSOR_DEFINITIONS 加上 TRADPLUS_ENABLED 
+Admob要求  Info.plist 添加 GADApplicationIdentifier
+引入FB模块并初始化FBSDK（见第五条）
+</code></pre><h3 id="19穿山甲聚合abu">19、穿山甲聚合（abu）</h3><pre><code class="language-txt">ABUAd 需要在GCC_PREPROCESSOR_DEFINITIONS 加上 ABUADSDK_ENABLED 
+adConfig.abuAppId = APP_ID;
+</code></pre><h2 id="三加载广告">三.加载广告</h2><p>一般来说cache配置文件默认配置isAutoLoad的值为true，表示SDK初始化后将自动加载缓存广告,可直接跳过此步骤,若需手动加载则将对应的值改为false，并手动调用load方法加载广告</p><pre><code class="language-oc">//加载插屏广告
+[[EYAdManager sharedInstance] loadInterstitialAd: placeId];
+
+//加载激励视频
+[[EYAdManager sharedInstance] loadRewardVideoAd: placeId];
+
+//加载原生广告
+[[EYAdManager sharedInstance] loadNativeAd: placeId];
+
+//加载Banner
+[[EYAdManager sharedInstance] loadBannerAd: placeId];
+
+//加载开屏广告
+[[EYAdManager sharedInstance] loadSplashAd: placeId];
+
+//判断广告是否加载完成
+bool isNativeAdLoaded = [[EYAdManager sharedInstance] isNativeAdLoaded: placeId];
+bool isBannerAdLoaded = [[EYAdManager sharedInstance] isBannerAdLoaded: placeId];
+bool isInterstitialAdLoaded = [[EYAdManager sharedInstance] isInterstitialAdLoaded: placeId];
+bool isRewardAdLoaded = [[EYAdManager sharedInstance] isRewardAdLoaded: placeId];
+bool isSplashAdLoaded = [[EYAdManager sharedInstance] isSplashAdLoaded: placeId];
+</code></pre><h2 id="四显示广告">四.显示广告</h2><pre><code class="language-oc">//展示激励视频 reward_ad为广告位id，对应ios_ad_setting.json配置
+[[EYAdManager sharedInstance] showRewardVideoAd:@"reward_ad" withViewController:self];
+
+//展示插屏 inter_ad为广告位id，对应ios_ad_setting.json配置
+[[EYAdManager sharedInstance] showInterstitialAd:@"inter_ad" withViewController:self];
+
+//展示原生广告 native_ad为广告位id，对应ios_ad_setting.json配置
+[[EYAdManager sharedInstance] showNativeAd:@"native_ad" withViewController:self viewGroup:self.nativeRootView];
+
+//展示Banner广告 banner_ad为广告位id，对应ios_ad_setting.json配置
+bool isSuccess = [[EYAdManager sharedInstance] showBannerAd:@"banner_ad" viewGroup:self.bannerRootView];
+
+//展示Splash广告 splash_ad为广告位id，对应ios_ad_setting.json配置
+[[EYAdManager sharedInstance] showSplashAd:@"splash_ad" withViewController:self];
+</code></pre><h2 id="五广告事件回调">五.广告事件回调</h2><pre><code class="language-oc">[[EYAdManager sharedInstance] setDelegate:self];
+
+//广告回掉EYAdDelegate
+-(void) onAdLoaded:(NSString*) adPlaceId type:(NSString*)type
+{
+    NSLog(@"广告加载完成 onAdLoaded adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+-(void) onAdReward:(NSString*) adPlaceId  type:(NSString*)type
+{
+    NSLog(@"激励视频观看完成 onAdReward adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+-(void) onAdShowed:(NSString*) adPlaceId  type:(NSString*)type
+{
+    NSLog(@"广告展示 onAdShowed adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+//广告展示后的回调(带回调数据)，可选代理方法，目前仅topOn会回调此函数
+//extraData即位回调的数据字典,其中adsource_price字段即为eCPM,其单位可通过currency字段获取, //精度可通过precision字段获取
+- (void)onAdShowed:(NSString *)adPlaceId type:(NSString *)type extraData:(NSDictionary *)extraData
+{
+    NSLog(@"广告展示 extraData = %@", extraData);
+}
+
+-(void) onAdClosed:(NSString*) adPlaceId  type:(NSString*)type
+{
+    NSLog(@"广告关闭 onAdClosed adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+-(void) onAdClicked:(NSString*) adPlaceId  type:(NSString*)type
+{
+    NSLog(@"广告点击 onAdClicked adPlaceId = %@, type = %@", adPlaceId, type);
+}
+
+- (void)onAdLoadFailed:(nonnull NSString *)adPlaceId key:(nonnull NSString *)key code:(int)code 
+{
+    NSLog(@"广告加载失败 onAdLoadFailed adPlaceId = %@, key = %@, code = %d", adPlaceId, key, code);
+}
+
+- (void)onDefaultNativeAdClicked {
+    NSLog(@"默认原生广告点击 onDefaultNativeAdClicked");
+}
+
+-(void) onAdImpression:(NSString*) adPlaceId  type:(NSString*)type
+{
+    NSLog(@"lwq, onAdImpression adPlaceId = %@, type = %@", adPlaceId, type);
+}
+</code></pre><h2 id="自定义原生广告">自定义原生广告</h2><p>原生广告默认会加载SDK包中的nativeAd.xib中的布局，目前默认布局中的控件有：</p><pre><code class="language-oc">@interface YourCustomClass : EYNativeAdView
+//最底层视图
+@property(nonatomic,strong) IBOutlet UIView* nativeAdLayout;
+//广告icorn
+@property(nonatomic,strong) IBOutlet UIImageView* nativeAdIcon;
+//广告标题
+@property(nonatomic,strong) IBOutlet UILabel* nativeAdTitle;
+//广告描述
+@property(nonatomic,strong) IBOutlet UILabel* nativeAdDesc;
+//视频/图片 视图
+@property(nonatomic,strong) IBOutlet UIView* mediaLayout;
+//跳转按钮
+@property(nonatomic,strong) IBOutlet UIButton* actBtn;
+//关闭按钮
+@property(nonatomic,strong) IBOutlet UIView* closeBtn;
+@end
+</code></pre><p>若想自定义布局可以用以下两种方式</p><h3 id="一代码布局">一、代码布局</h3><p>1.注册自定义类</p><pre><code class="language-oc">//注意需要在[[EYAdManager sharedInstance] setupWithConfig:adConfig]之后调用
+[[EYAdManager sharedInstance] registerNativeAdCustomClass:[YourCustomClass class]];
+</code></pre><p>2.创建自定义类继承自EYNativeAdView</p><pre><code class="language-oc">@interface YourCustomClass : EYNativeAdView
+
+@end
+</code></pre><p>3.目前提供以下两个方法重写布局</p><pre><code class="language-oc">@implementation YourCustomClass
+//自定义类被初始化时调用,可以布局或初始化控件
+- (void)initFromXib {
+    NSLog(@"custom view init from xib");
+}
+
+//布局子控件时调用,可以布局控件
+- (void)layoutSubviews {
+    NSLog(@"custom view layout subviews");
+}
+@end
+</code></pre><h3 id="二自定义xib布局">二、自定义xib布局</h3><p>1.修改ios_ad_setting.json文件中原生广告的nativeAdLayout值改为自定义xib的名字(默认为nativeAd)，如下：</p><pre><code class="language-oc">{
+    "isEnabled":"true",
+    "desc":"原生广告",
+    "id":"native_ad",
+    "nativeAdLayout":YourXibName,
+    "cacheGroup":"native_ad"
+}
+@end
+</code></pre><p>2.xib设置关联EYNativeAdView类</p><p>3.xib中添加自己的控件并连线</p><h2 id="事件上报">事件上报</h2><h3 id="1thinking数数事件上传">1、Thinking（数数）事件上传</h3><pre><code class="language-oc">完成数数初始化后（见步骤二SDK初始化第18条），您可以按以下方式来使用SDK: 
+#import &lt;ThinkingSDK/ThinkingAnalyticsSDK.h&gt;
+[[ThinkingAnalyticsSDK sharedInstanceWithAppid:APP_ID] track:@"event_name" properties:eventProperties]; 
+更多功能请参考数数SDK文档: https://docs.thinkingdata.cn/ta-manual/latest/installation/installation_menu/client_sdk/ios_sdk_installation/ios_sdk_installation.html
+</code></pre><h3 id="2eyusdk事件上传">2、EyuSDK事件上传</h3><pre><code class="language-oc">//SDK自带事件上报
+#import "EYEventUtils.h"
+NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+[dic setObject:@"testValue" forKey:@"testKey"];
+[EYEventUtils logEvent:@"EVENT_NAME"  parameters:dic];
+</code></pre><h2 id="ios-14适配重要">IOS 14适配（重要）</h2><p>skadnetwork说明文档 https://developer.apple.com/documentation/storekit/skadnetwork</p><p>admob关于ios14的建议 https://support.google.com/admob/answer/9997589?hl=zh-Hans</p><p>1.在info.plist文件里添加跟踪权限请求描述说明</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="nt">&lt;key&gt;</span>NSUserTrackingUsageDescription<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>This identifier will be used to deliver personalized ads to you.<span class="nt">&lt;/string&gt;</span>
+</pre></table></code></div></div><p>2.获取App Tracking Transparency权限</p><pre><code class="language-oc">#import &lt;AppTrackingTransparency/AppTrackingTransparency.h&gt;
+//建议在请求权限后再请求广告（如果配置文件的isAutoLoad为true,setupWithConfig方法会自动加载广告）
+if (@available(iOS 14, *)) {
+    //iOS 14
+    [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+        //注意：经测试该回调偶尔会在主线程执行，请务必使用异步方法async避免死锁崩溃
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[EYAdManager sharedInstance] setupWithConfig:adConfig];
+        }
+    }];
+} else {
+    [[EYAdManager sharedInstance] setupWithConfig:adConfig];
+}
+</code></pre><p>注意：该权限只有Xcode 12及以上版本才有，需要更新Xcode 12版本来进行测试使用。</p><p>3.使用SKAdNetwork跟踪转化<br /> 使用Apple的转化跟踪SKAdNetwork，这意味着即使IDFA不可用，广告平台也可以通过这个获取应用安装归因。请参阅Apple的SKAdNetwork文档，以了解更多信息。<br /> 要启用此功能，您需要在info.plist中添加SKAdNetworkItems，下面例举几个常用的SDK平台需要添加的内容，其他请参考对应官方文档</p><p>Google Admob</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+       <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+       <span class="nt">&lt;string&gt;</span>cstr6suwn9.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>穿山甲(Pangle)</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>238da6jt44.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>22mmun2rn5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>UnityAds</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>4DZT52R2T5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>bvpn9ufa9b.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>Mintegral</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>KBD757YWX3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>wg4vff78zm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>737z793b9f.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>ydx93a7ass.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>prcb7njmu6.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>7UG5ZH24HU.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>44jx6755aq.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>2U9PT9HC89.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>W9Q455WK68.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>YCLNXRL5PM.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>TL55SBB4FM.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>8s468mfl3y.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>GLQZH8VGBY.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>c6k4g5qg8m.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>mlmmfzh3r3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>4PFYVQ9L8R.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>av6w8kgt66.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>6xzpu9s2p8.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>hs6bdukanm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>Facebook</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>v9wttpbfk9.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>n38lu8286q.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>Sigmob</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre> <span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+ <span class="nt">&lt;array&gt;</span>
+     <span class="nt">&lt;dict&gt;</span>
+         <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+         <span class="nt">&lt;string&gt;</span>58922NB4GD.skadnetwork<span class="nt">&lt;/string&gt;</span>
+     <span class="nt">&lt;/dict&gt;</span>
+ <span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>Vungle</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>GTA9LK7P23.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>MAX</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+</pre><td class="rouge-code"><pre><span class="nt">&lt;key&gt;</span>SKAdNetworkItems<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>cstr6suwn9.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>2u9pt9hc89.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>4468km3ulz.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>4fzdc2evr5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>5a6flpkh64.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>7ug5zh24hu.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>8s468mfl3y.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>9rd848q2bz.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>9t245vhmpl.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>av6w8kgt66.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>f38h382jlk.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>hs6bdukanm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>kbd757ywx3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ludvb6z3bs.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>m8dbw4sv7c.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>mlmmfzh3r3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>prcb7njmu6.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>t38b2kh725.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>tl55sbb4fm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>wzmmz9fp6w.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>yclnxrl5pm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ydx93a7ass.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>n38lu8286q.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>v9wttpbfk9.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>24t9a8vw3c.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>252b5q8x7y.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>3qy4746246.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>3sh42y64q3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>44jx6755aq.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>4pfyvq9l8r.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>5l3tpt7t6e.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>5lm9lj6jb7.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>7rz58n8ntl.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>9g2aggbj52.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>c6k4g5qg8m.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>cg4yq2srnc.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>dzg6xy7pwj.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ejvt5qm6ak.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>f73kdq92p3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>g28c52eehv.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>hdw39hrw9y.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>klf5c3l5u5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ppxm28t8ap.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>uw77j35x4d.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>v72qych5uu.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>wg4vff78zm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>y45688jllp.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>su67r6k2v3.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>6xzpu9s2p8.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>737z793b9f.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>glqzh8vgby.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>w9q455wk68.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>22mmun2rn5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>238da6jt44.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>3rd42ekr43.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>424m5254lk.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>44n7hlldy6.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>488r3q3dtq.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>4dzt52r2t5.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>578prtvx9j.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>5tjdwbrq8w.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>bvpn9ufa9b.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>lr83yxwka7.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>s39g8k73mm.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>v79kvwwj4g.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>zmvfpc5aq8.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>7953jerfzd.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>9nlqeag3gk.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>9yg77x724h.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>cj5566h2ga.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>gta9lk7p23.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>mls7yz5dvl.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>mtkv5xtk9e.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>n66cz3y3bx.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>n9x2a789qt.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>SKAdNetworkIdentifier<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;string&gt;</span>p78axxw29g.skadnetwork<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</pre></table></code></div></div><p>AnyThink</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>合并以上admob,unityads,vungle,mtg,穿山甲,sigmob的内容进行添加
+</pre></table></code></div></div><p>穿山甲聚合</p><div class="language-xml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>合并以上admob,gdt,mtg,穿山甲,sigmob,unityads的内容进行添加
+</pre></table></code></div></div><h2 id="常见问题">常见问题</h2><pre><code class="language-txt">1.为什么banner首次加载不出来？ 
+答：可能是因为banner广告还没加载完成就调用了show方法，显示广告前请注意判断广告是否已经加载完成。
+
+2.测试的时候max广告怎么显示不出来？ 
+答：目前max广告建议VPN连美国的节点测试，请更换VPN节点后再试试。
+
+3.SDK崩溃 reason: '-[EYAdConfig setXXXAppId:]: unrecognized selector sent to instance 
+答：请注意按文档只设置使用到的广告模块的appid或者appkey，注意只添加使用到的模块对应的预编译宏。
+</code></pre><h2 id="示例工程">示例工程</h2><p><a href="https://github.com/EyugameQy/EyuLibrary-ios/tree/master/Example">示例工程</a></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/blogging/'>Blogging</a>, <a href='/categories/tutorial/'>Tutorial</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/ios/" class="post-tag no-text-decoration" >IOS</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=IOS接入文档-cocoapods（推荐） - EyugameQy&url=https://EyugameQy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=IOS接入文档-cocoapods（推荐） - EyugameQy&u=https://EyugameQy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=IOS接入文档-cocoapods（推荐） - EyugameQy&url=https://EyugameQy.github.io/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink()" data-toggle="tooltip" data-placement="top" title="Copy link"></i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E6%B5%B7%E5%A4%96/">Android自主接入文档（国外）</a><li><a href="/posts/Andorid-sdk%E5%BF%AB%E9%80%9F%E6%8E%A5%E5%85%A5/">Android快速接入</a><li><a href="/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(cocoapods)/">IOS接入文档-cocoapods（推荐）</a><li><a href="/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(%E6%89%8B%E5%8A%A8%E6%8E%A5%E5%85%A5)/">IOS接入文档-手动接入</a><li><a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E5%9B%BD%E5%86%85/">Android自主接入文档（国内）</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/android/">Android</a> <a class="post-tag" href="/tags/ios/">IOS</a> <a class="post-tag" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%A5%E5%85%A5/">快速接入</a> <a class="post-tag" href="/tags/unity/">unity</a> <a class="post-tag" href="/tags/%E5%9B%BD%E5%86%85/">国内</a> <a class="post-tag" href="/tags/%E6%B5%B7%E5%A4%96/">海外</a></div></div></div><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/IOS-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3(%E6%89%8B%E5%8A%A8%E6%8E%A5%E5%85%A5)/"><div class="card-body"> <span class="timeago small" > Dec 28, 2020 <i class="unloaded">2020-12-28T15:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>IOS接入文档-手动接入</h3><div class="text-muted small"><p> Installation 本文档为手动集成说明文档，若需cocoapods集成请跳转至SDK接入文档cocoapods集成 一.SDK集成 1、目前仅部分模块支持手动接入 模块:穿山甲（国内） :支持 BYTE_DANCE_ADS_ENABLED 穿山甲（国外） :支持 BYTE_DANCE_ADS_ENABLED 广点通广告...</p></div></div></a></div><div class="card"> <a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E5%9B%BD%E5%86%85/"><div class="card-body"> <span class="timeago small" > Feb 21 <i class="unloaded">2021-02-21T17:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Android自主接入文档（国内）</h3><div class="text-muted small"><p> Android系统适配与打包相关配置 AndroidX配置 如果创建的项目时支持AndroidX不用修改。如果是旧项目，请使用 Android Studio 3.2 及更高版本，菜单栏中依次选择 Refactor &gt; Migrate to AndroidX，即可将现有项目迁移到 AndroidX。 修改 gradle.properties，加入以下代码块 android...</p></div></div></a></div><div class="card"> <a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E6%B5%B7%E5%A4%96/"><div class="card-body"> <span class="timeago small" > Mar 18 <i class="unloaded">2021-03-18T17:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Android自主接入文档（国外）</h3><div class="text-muted small"><p> Android系统适配与打包相关配置 AndroidX配置 如果创建的项目时支持AndroidX不用修改。如果是旧项目，请使用 Android Studio 3.2 及更高版本，菜单栏中依次选择 Refactor &gt; Migrate to AndroidX，即可将现有项目迁移到 AndroidX。 修改 gradle.properties，加入以下代码块 1 2 3 a...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E5%9B%BD%E5%86%85/" class="btn btn-outline-primary"><p>Android自主接入文档（国内）</p></a> <a href="/posts/Andorid-sdk%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3-%E6%B5%B7%E5%A4%96/" class="btn btn-outline-primary"><p>Android自主接入文档（国外）</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://twitter.com/username">your_full_name</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy/" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/android/">Android</a> <a class="post-tag" href="/tags/ios/">IOS</a> <a class="post-tag" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%A5%E5%85%A5/">快速接入</a> <a class="post-tag" href="/tags/unity/">unity</a> <a class="post-tag" href="/tags/%E5%9B%BD%E5%86%85/">国内</a> <a class="post-tag" href="/tags/%E6%B5%B7%E5%A4%96/">海外</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://EyugameQy.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script>
